@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueCompositionApi from "@vue/composition-api";
 
 import App from "./App.vue";
+import "./styles/main.scss"
 import "./registerServiceWorker";
 
 Vue.use(VueCompositionApi);

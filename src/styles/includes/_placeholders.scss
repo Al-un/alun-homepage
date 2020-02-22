@@ -1,0 +1,10 @@
+/**
+Altough I often say "Abstract (S)CSS class", I should say "Placeholder classes":
+https://sass-lang.com/guide#topic-7
+*/
+
+// All base styling for each section
+%al-section {
+  position: relative;
+  width: 100%;
+}
