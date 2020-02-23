@@ -1,0 +1,10 @@
+// Images
+.al-image {
+  // Image is in covering mode
+  // https://css-tricks.com/almanac/properties/o/object-fit/
+  &.is-cover {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
