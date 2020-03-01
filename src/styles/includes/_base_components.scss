@@ -42,3 +42,21 @@
     resize: vertical;
   }
 }
+
+.al-card {
+  border: 1px solid black;
+
+  .al-card-header {
+    padding: $base-size/4 $base-size/2;
+    border-bottom: 1px solid black;
+  }
+
+  .al-card-body {
+    padding: $base-size/2;
+  }
+
+  .al-card-footer {
+    border-top: 1px solid grey;
+    padding: $base-size/4 $base-size/2;
+  }
+}
