@@ -17,6 +17,12 @@ type TranslationInput =
 export const translate = (input: TranslationInput): string | string[] => {
   const language: Languages = DEFAULT_LANGUAGE;
 
+  // Just in case...
+  if (input === undefined) {
+    console.trace(`Attempted to translated an undefined resource`);
+    return "##UNDEFINED##";
+  }
+
   // Single string
   if (typeof input === "string") {
     return input;
