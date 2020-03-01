@@ -1,4 +1,4 @@
-import { TranslatedParagraphs, TranslatedExpression } from "./common";
+import { TranslatedParagraphs, TranslatedExpression, WithTitle } from "./common";
 
 /**
  * Theme definition
@@ -35,28 +35,22 @@ export interface UiBanner {
 /**
  * About Me title
  */
-export interface UiAboutMe {
-  title: TranslatedExpression;
-}
+export type UiAboutMe = WithTitle;
 
 /**
  * Skills UI elements
  */
-export interface UiSkill {
-  title: TranslatedExpression;
-}
+export type UiSkill = WithTitle;
 
 /**
  * Hobby UI elements
  */
-export interface UiHobby {
-  title: TranslatedExpression;
-}
+export type UiHobby = WithTitle;
 
 /**
  * Various label for the ContactMe form
  */
-export interface UiContactMe {
+export interface UiContactMe extends WithTitle {
   sender: TranslatedExpression;
   subject: TranslatedExpression;
   body: TranslatedExpression;

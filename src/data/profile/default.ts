@@ -1,7 +1,7 @@
 import { Profile } from "@/models";
 
 export const PROFILE_DEFAULT: Profile = {
-  header: {
+  banner: {
     title: "Al-un",
     subtitle: { en: "Front-end developer", fr: "Développeur front-end" }
   },
@@ -15,19 +15,19 @@ export const PROFILE_DEFAULT: Profile = {
     }
   },
 
-  skills: [
+  skillsGroups: [
     {
-      name: "Front-end",
+      title: "Front-end",
       skills: [
-        { name: "JavaScript", level: 7 },
-        { name: "Vue.js", level: 5 }
+        { title: "JavaScript", level: 7 },
+        { title: "Vue.js", level: 5 }
       ]
     },
     {
-      name: "Back-end",
+      title: "Back-end",
       skills: [
-        { name: "Go(lang)", level: 3 },
-        { name: "Node.js", level: 2 }
+        { title: "Go(lang)", level: 3 },
+        { title: "Node.js", level: 2 }
       ]
     }
   ],

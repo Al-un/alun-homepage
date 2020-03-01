@@ -1,4 +1,4 @@
-import { TranslatedExpression, TranslatedParagraphs } from "./common";
+import { TranslatedExpression, TranslatedParagraphs, WithTitle, WithUntranslatedTitle } from "./common";
 
 /**
  * Evaluation is restriction to a [0, 10] interval with integers only
@@ -12,15 +12,14 @@ export type EvaluationLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 export interface Profile {
   banner: ProfileBanner;
   about: AboutMe;
-  skills: SkillsGroup[];
+  skillsGroups: SkillsGroup[];
   hobbies: Hobby[];
 }
 
 /**
  * "Headline": name and title/main role
  */
-export interface ProfileBanner {
-  title: string;
+export interface ProfileBanner extends WithUntranslatedTitle{
   subtitle: TranslatedExpression;
 }
 
@@ -34,29 +33,23 @@ export interface AboutMe {
 /**
  * Skills are presented grouped to show my focus on specific technical domain
  */
-export interface SkillsGroup {
-  name: string;
+export interface SkillsGroup extends WithUntranslatedTitle{
   skills: Skill[];
 }
 
 /**
- * My skills set
+ * Skill name is not translated for the moment as it is mainly technical wording
  *
  * 03-Mar-2020: do not define target
  */
-export interface Skill {
-  /**
-   * Skill name is not translated for the moment as it is mainly technical wording
-   */
-  name: string;
+export interface Skill extends WithUntranslatedTitle{
   level: EvaluationLevel;
 }
 
 /**
  * A hobby of mine has one photo for the moment
  */
-export interface Hobby {
-  title: TranslatedExpression;
+export interface Hobby extends WithTitle{
   content: TranslatedParagraphs;
   images: HobbyImage;
 }

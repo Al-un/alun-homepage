@@ -19,3 +19,20 @@ export type TranslatedExpression = { [key in Languages]: string };
  */
 export type TranslatedParagraphs = { [key in Languages]: string[] };
 
+/**
+ * Factorize all theme or profile elements which has a title, usually rendered
+ * in the same way
+ *
+ * If an interface only has a title, it can be a `type` as empty interfaces
+ * are discouraged.
+ */
+export interface WithTitle {
+  title: TranslatedExpression;
+}
+
+/**
+ * `WithTitle` without translation
+ */
+export interface WithUntranslatedTitle {
+  title: string;
+}

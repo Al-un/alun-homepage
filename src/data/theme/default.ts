@@ -22,6 +22,7 @@ export const THEME_DEFAULT: UiTheme = {
       title: { en: "Hobbies", fr: "Loisirs" }
     },
     contact: {
+      title: { en: "Contact", fr: "Contact" },
       sender: { en: "Email", fr: "Email" },
       subject: { en: "Subject", fr: "Sujet" },
       body: { en: "Message", fr: "Message" },
