@@ -20,7 +20,7 @@ export interface UiTheme {
    * Pure UI related information
    */
   ui: {
-    header: UiHeader;
+    banner: UiBanner;
     about: UiAboutMe;
     skills: UiSkill;
     hobbies: UiAboutMe;
@@ -28,8 +28,8 @@ export interface UiTheme {
   };
 }
 
-export interface UiHeader {
-  banner: string;
+export interface UiBanner {
+  image: string;
 }
 
 /**

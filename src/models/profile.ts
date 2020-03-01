@@ -10,7 +10,7 @@ export type EvaluationLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
  * for phrasing purpose
  */
 export interface Profile {
-  header: ProfileHeader;
+  banner: ProfileBanner;
   about: AboutMe;
   skills: SkillsGroup[];
   hobbies: Hobby[];
@@ -19,13 +19,13 @@ export interface Profile {
 /**
  * "Headline": name and title/main role
  */
-export interface ProfileHeader {
+export interface ProfileBanner {
   title: string;
   subtitle: TranslatedExpression;
 }
 
 /**
- * A bit more detail about me, expanding the ProfileHeader information
+ * A bit more detail about me, expanding the ProfileBanner information
  */
 export interface AboutMe {
   content: TranslatedParagraphs;

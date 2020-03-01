@@ -9,8 +9,8 @@ export const THEME_DEFAULT: UiTheme = {
   localStorageKey: "DEFAULT",
 
   ui: {
-    header: {
-      banner: "banner.jpg"
+    banner: {
+      image: "banner.jpg"
     },
     about: {
       title: { en: "About me", fr: "A propos" }
