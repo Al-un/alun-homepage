@@ -4,25 +4,19 @@ import { CreateElement, RenderContext, VNode } from "vue/types";
 interface Props {
   /**
    * Image mandatory source
-   * @type {String}
-   * @required
    */
   src: string;
   /**
    * Image optional alt. Default value is provided
-   * @type {String}
-   * @default "Img"
    */
   alt: string;
   /**
    * If true, image fills parent container with `object-fit: cover`
-   * @type {Boolean}
-   * @default false
    */
   isCover: boolean;
 }
 
-export default Vue.extend<Props>({
+const baseImage = Vue.extend<Props>({
   name: "BaseImage",
   functional: true,
 
@@ -61,3 +55,5 @@ export default Vue.extend<Props>({
     );
   }
 });
+
+export default baseImage;
