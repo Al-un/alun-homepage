@@ -1,7 +1,7 @@
 import Vue from "vue";
 import { CreateElement, RenderContext, VNode } from "vue/types";
 import { TranslatedExpression, TranslatedParagraphs } from "@/models";
-import { translate } from "@/utils/translation";
+import { translate } from "@/utils";
 
 interface Props {
   /**

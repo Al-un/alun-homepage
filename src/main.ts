@@ -24,7 +24,7 @@ requireComponent.keys().forEach(fileName => {
 });
 
 // Filters
-import { translate } from "@/utils/translation";
+import { translate } from "@/utils";
 Vue.filter("i18n", translate);
 
 // ----- Application specific imports
