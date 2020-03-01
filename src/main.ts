@@ -23,6 +23,10 @@ requireComponent.keys().forEach(fileName => {
   Vue.component(componentName, componentConfig.default || componentConfig);
 });
 
+// Filters
+import { translate } from "@/utils/translation";
+Vue.filter("i18n", translate);
+
 // ----- Application specific imports
 import app from "./app.vue";
 import "./styles/main.scss";
