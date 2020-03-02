@@ -4,7 +4,7 @@ module.exports = {
     node: true
   },
   extends: [
-    "plugin:vue/essential",
+    "plugin:vue/recommended", // Use priority A+B+C: https://eslint.vuejs.org/rules/
     "eslint:recommended",
     "@vue/typescript/recommended",
     "@vue/prettier",
