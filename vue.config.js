@@ -1,5 +1,5 @@
-// Webpack bundle analyzer: https://stackoverflow.com/a/57157879/4906586
-const path = require("path");
+// // Webpack bundle analyzer: https://stackoverflow.com/a/57157879/4906586
+// const path = require("path");
 
 module.exports = {
   // Starting with https://github.com/vuejs/vue-cli/issues/2208, it appears that

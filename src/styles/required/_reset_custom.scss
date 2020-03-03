@@ -1,0 +1,25 @@
+/**
+Custom resets are in a separate file:
+- To avoid auto-formatting stuff :(
+- Use of CSS variables
+
+Must be imported after the standard reset
+ */
+
+// All elements
+* {
+  box-sizing: border-box;
+}
+
+// Base elements
+body {
+  background-color: var(--color-bg-body);
+  color: var(--font-color);
+}
+
+// hX titles
+@each $hTitle in (h1, h2, h3, h4) {
+  #{$hTitle} {
+    font-size: var(--#{$hTitle}-size);
+  }
+}

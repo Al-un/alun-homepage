@@ -1,0 +1,8 @@
+/**
+Take a value from CSS variable and apply a multiplication. Useful when the 
+value of the CSS variable has a unit as the $multiplier does not need any
+unit
+*/
+@function multiply($varName, $multiplier) {
+  @return calc(var(--#{$varName}) * #{$multiplier});
+}
