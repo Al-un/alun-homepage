@@ -19,6 +19,7 @@ import {
 import LayoutDefault from "@/layouts/layout-default.vue";
 import { setCssRootVariable } from "./utils";
 import { THEME_DEFAULT } from "./data";
+import { RequiredCssProperty } from './models';
 
 /**
  * Local status:
@@ -46,7 +47,7 @@ export default defineComponent({
     // setCssRootVariable("color-primary", "red");
     const theme = THEME_DEFAULT;
     Object.keys(theme.cssVariables).forEach(cssVar =>
-      setCssRootVariable(cssVar, theme.cssVariables[cssVar] as string)
+      setCssRootVariable(cssVar, theme.cssVariables[cssVar as RequiredCssProperty] as string)
     );
 
     // Simulate loading time
