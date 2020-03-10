@@ -1,0 +1,23 @@
+// CSS var
+:root {
+  --al-cv-color-primary: teal;
+  --al-cv-color-body-bg: #222;
+  --al-cv-color-content-bg: #efefef;
+  --al-cv-color-on-content: #000;
+  --al-cv-color-on-primary: #000;
+  --al-cv-base-size: 1rem;
+  --al-cv-font-size-xl: 1.5rem;
+  --al-cv-font-size-l: 1.25rem;
+  --al-cv-font-size-m: 1rem;
+  --al-cv-font-size-s: 0.75rem;
+  --al-cv-font-size-xs: 0.5rem;
+}
+
+@page {
+  margin: 0mm;
+
+  .al-cv-page {
+    width: 100%;
+    max-width: 100%;
+  }
+}
