@@ -1,9 +1,11 @@
 // ----- Vue.js imports
 import Vue from "vue";
+import VueRouter from "vue-router";
 import VueCompositionApi from "@vue/composition-api";
 
 // ----- Vue.js configuration
 Vue.use(VueCompositionApi);
+Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
 // Base components:
@@ -31,8 +33,8 @@ Vue.filter("i18n", translate);
 import app from "./app.vue";
 import "./styles/main.scss";
 import "./registerServiceWorker";
+import { routes } from "./routes";
 
-// ----- Here we go!
-new Vue({
-  render: h => h(app)
-}).$mount("#app");
+const router = new VueRouter({ routes });
+
+new Vue({ router, render: h => h(app) }).$mount("#app");
