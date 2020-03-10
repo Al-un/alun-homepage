@@ -27,3 +27,11 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Branding
+
+In `assets/brands/`
+
+Medium         : https://medium.design/logos-and-brand-guidelines-f1a01a733592
+StackOverflow  : https://stackoverflow.com/company/logos
+Github         : https://github.com/logos
