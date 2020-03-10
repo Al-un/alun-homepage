@@ -34,7 +34,7 @@ const baseText = Vue.extend<Props>({
     { props }: RenderContext<Props>
   ): VNode | VNode[] {
     const createTextElement = (text: string) => {
-      return createElement("div", { class: "al-text-paragraph" }, text);
+      return createElement("p", { class: "al-text-paragraph" }, text);
     };
 
     const content = translate(props.content);
