@@ -1,2 +1,17 @@
 @import "required/reset";
+// Append some custom reset after this file
+@import "required/reset_custom";
 @import "includes/base_components";
+
+// CV
+@import "cv/main.scss";
+
+// Just picked randomly, need to check deeper choice
+// https://fonts.google.com/specimen/Source+Code+Pro?selection.family=Source+Code+Pro
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap");
+// https://fonts.google.com/specimen/Fira+Mono?selection.family=Fira+Mono
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono&display=swap');
+body {
+//   font-family: "Source Code Pro", monospace;
+  font-family: "Fira Mono", monospace;
+}
