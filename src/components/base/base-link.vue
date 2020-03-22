@@ -1,6 +1,8 @@
 <template functional>
   <a
     class="al-link"
+    :class="data.staticClass"
+    :style="data.staticStyle"
     v-bind="data.attrs"
     target="_blank"
     rel="noopener noreferrer"

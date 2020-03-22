@@ -1,5 +1,9 @@
 <template>
-  <cv-section :section="experiences" class="al-cv-experience">
+  <cv-section
+    :section="experiences"
+    class="al-cv-experience"
+    title-md-icon="work_outline"
+  >
     <cv-experience
       v-for="(xp, idx) in experiences.content"
       :key="`al-cv-xp-${idx}`"

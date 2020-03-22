@@ -64,6 +64,8 @@ export interface HasImage {
 // ---------- About me --------------------------------------------------------
 
 export interface CvInfo {
+  phone: string;
+  location: string;
   email: string;
 }
 
@@ -84,8 +86,8 @@ export interface CvSkillGroup extends HasName {
 }
 
 export interface CvSkill extends HasName, HasImage {
-  level: 1 | 2 | 3 | 4 | 5;
-  interest: 1 | 2 | 3 | 4 | 5;
+  level: 0 | 1 | 2 | 3 | 4 | 5;
+  interest: 0 | 1 | 2 | 3 | 4 | 5;
 }
 // ---------- Experience ------------------------------------------------------
 export interface CvExperienceSection extends CvSection {
@@ -94,15 +96,19 @@ export interface CvExperienceSection extends CvSection {
 
 export interface CvExperience {
   title: TranslatedExpression;
-  company: string;
+  organisation: {
+    name: string;
+    // optional URL of the organisation
+    url?: string;
+  };
   date: {
     start: TranslatedExpression;
     end: TranslatedExpression;
   };
   location: TranslatedExpression;
   description: TranslatedParagraphs;
-  roles: TranslatedParagraphs;
-  skills: TranslatedParagraphs;
+  roles?: TranslatedParagraphs;
+  skills?: TranslatedParagraphs;
 }
 
 // ---------- Languages -------------------------------------------------------

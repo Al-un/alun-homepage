@@ -1,14 +1,19 @@
 <template>
-  <cv-section :section="skills" class="al-cv-skill">
-    <div v-for="(skillGroup, grpIdx) in skills.content" :key="grpIdx">
-      {{ skillGroup.name | i18n }}
-      <div
-        v-for="(skill, skillIdx) in skillGroup.skills"
-        :key="`${grpIdx}-${skillIdx}`"
-      >
-        {{ skill.name | i18n }} |  {{ skill.level }} |  {{ skill.interest }}
-      </div>
-    </div>
+  <cv-section :section="skills" class="al-cv-skill" title-md-icon="code">
+    <p class="intro on-screen-only">
+      Self assessment of my current capabilities and currently charging up
+      batteries for the topics I am currently interested in.
+    </p>
+    <p class="intro on-print-only">
+      Levels are self assessed with highlighting on topics I am currently
+      interested in.
+    </p>
+
+    <cv-skill-group
+      v-for="(skillGroup, grpIdx) in skills.content"
+      :key="grpIdx"
+      :skill-group="skillGroup"
+    />
   </cv-section>
 </template>
 
@@ -16,6 +21,7 @@
 import { defineComponent } from "@vue/composition-api";
 
 import CvSection from "./cv-section.vue";
+import CvSkillGroup from "./cv-skill-group.vue";
 import { CvSkillSection } from "@/models";
 
 interface Props {
@@ -24,7 +30,7 @@ interface Props {
 
 export default defineComponent({
   name: "cv-skill-section",
-  components: { CvSection },
+  components: { CvSection, CvSkillGroup },
   props: {
     skills: { type: Object, required: true }
   },
@@ -37,5 +43,36 @@ export default defineComponent({
 
 <style lang="scss">
 .al-cv-skill {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  .section-title {
+    width: 100%;
+  }
+
+  .intro {
+    width: 100%;
+    margin-bottom: multiply(al-cv-base-size, 0.25);
+  }
+
+  .on-screen-only {
+    display: block;
+  }
+  .on-print-only {
+    display: none;
+  }
+}
+
+@media print {
+  .al-cv-skill {
+    .on-screen-only {
+      display: none;
+    }
+    .on-print-only {
+      display: block;
+    }
+  }
 }
 </style>

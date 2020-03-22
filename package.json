@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "cv": "VUE_APP_CV=true vue-cli-service serve",
+    "cv:deploy": "VUE_APP_CV=true vue-cli-service build && surge dist/ https://cv.al-un.fr",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"

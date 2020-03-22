@@ -1,5 +1,9 @@
 <template>
-  <cv-section :section="hobbies" class="al-cv-hobbies">
+  <cv-section
+    :section="hobbies"
+    class="al-cv-hobbies"
+    title-md-icon="directions_bike"
+  >
     <span
       v-for="(hobby, idx) in hobbies.content"
       :key="`cv-hobby-${idx}`"
@@ -36,13 +40,13 @@ export default defineComponent({
 <style lang="scss">
 .al-cv-hobbies {
   .al-cv-hobby {
-    border-left: 3px solid var(--al-cv-color-primary);
+    border-left: 1px solid var(--al-cv-color-primary);
     padding: 0px multiply(al-cv-base-size, 0.5);
     display: inline-block;
     margin-bottom: multiply(al-cv-base-size, 0.5);
 
     &:last-of-type {
-      border-right: 3px solid var(--al-cv-color-primary);
+      border-right: 1px solid var(--al-cv-color-primary);
     }
   }
 }

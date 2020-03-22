@@ -1,0 +1,52 @@
+/**
+Following a "mobile" first approach, breakpoints are only considering
+the minimum width
+
+Nice functions      : https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/
+Lol                 : https://css-tricks.com/naming-media-queries/
+Orientation         : https://developer.mozilla.org/en-US/docs/Web/CSS/@media/orientation
+
+Used code:
+https://www.freecodecamp.org/news/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862/
+*/
+
+@mixin for-phone-only {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-portrait-up {
+  @media (min-width: 600px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-landscape-up {
+  @media (min-width: 900px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-up {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin for-big-desktop-up {
+  @media (min-width: 1800px) {
+    @content;
+  }
+}
+
+// Apply same style for tablet size and more as well as printing
+@mixin print-and-tablet {
+  @media (min-width: 600px) {
+    @content;
+  }
+
+  @media print {
+    @content;
+  }
+}

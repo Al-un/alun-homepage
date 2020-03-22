@@ -1,7 +1,7 @@
 <template>
   <section-default class="al-banner">
     <template #before>
-      <base-image v-if="image" :src="require(`@/assets/${image}`)" is-cover />
+      <base-image v-if="image" :src="require(`@/assets/${image}`)" />
       <div class="overlay"></div>
     </template>
 

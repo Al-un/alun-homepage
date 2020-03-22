@@ -1,18 +1,19 @@
 <template>
-  <cv-section :section="social" class="al-cv-social">
-    <base-link
+  <div class="al-cv-social">
+    <cv-link
       v-for="(socialLink, idx) in social.content"
       :key="`al-cv-social-${idx}`"
-      :href="socialLink.url"
+      :url="socialLink.url"
+      :img="socialLink.img"
+      >{{ socialLink.name | i18n }}</cv-link
     >
-      {{ socialLink.name | i18n }}
-    </base-link>
-  </cv-section>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
+import CvLink from "./cv-link.vue";
 import CvSection from "./cv-section.vue";
 import { CvSocialSection } from "@/models";
 
@@ -22,7 +23,7 @@ interface Props {
 
 export default defineComponent({
   name: "cv-social-section",
-  components: { CvSection },
+  components: { CvLink, CvSection },
   props: {
     social: { type: Object, required: true }
   },
@@ -35,14 +36,40 @@ export default defineComponent({
 
 <style lang="scss">
 .al-cv-social {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: multiply(al-cv-base-size, 0.5);
+
+  @include print-and-tablet {
+    .al-link {
+      width: 50%;
+    }
+    margin-top: 0px;
+  }
+
   .al-link {
-    display: block;
-    margin: multiply(al-cv-base-size, 0.5) 0px;
-    
-    // TEMP
-    color: black;
-    &:visited{
-      color: black;
+    margin: multiply(al-cv-base-size, 0.25) 0px;
+
+    @media print {
+      font-size: multiply(al-cv-font-size-m, 0.75);
+    }
+
+    .text {
+      display: none;
+
+      @include print-and-tablet {
+        display: inline-block;
+      }
+    }
+
+    .open-in-new {
+      display: none;
+
+      @include for-tablet-portrait-up {
+        display: inline-block;
+      }
     }
   }
 }

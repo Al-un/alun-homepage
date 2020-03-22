@@ -1,11 +1,17 @@
 <template>
-  <cv-section :section="languages" class="al-cv-languages">
+  <cv-section
+    :section="languages"
+    class="al-cv-languages"
+    title-md-icon="translate"
+  >
     <template v-for="(lang, idx) in languages.content">
-      <div :key="`cv-lang-img-${idx}`">
+      <div :key="`cv-lang-img-${idx}`" class="lang-icon">
         <img :src="require(`@/assets/${lang.img}`)" />
       </div>
-      <div :key="`cv-lang-name-${idx}`">{{ lang.name | i18n }}</div>
-      <div :key="`cv-lang-lvl-${idx}`">{{ lang.level | i18n }}</div>
+      <div :key="`cv-lang-${idx}`">{{ lang.level | i18n }}</div>
+      <!-- <div :key="`cv-lang-${idx}`">{
+        { lang.name | i18n }} - {{ lang.level | i18n }}
+      </div> -->
     </template>
   </cv-section>
 </template>
@@ -36,14 +42,19 @@ export default defineComponent({
 <style lang="scss">
 .al-cv-languages {
   display: grid;
-  grid-template-columns: repeat(3, multiply(al-cv-base-size, 3) 1fr 1fr);
+  grid-template-columns: auto 1fr;
+  gap: multiply(al-cv-base-size, 0.5) 0px;
 
-  .section-title{
-    grid-column: span 3;
+  .section-title {
+    grid-column: span 2;
   }
 
-  img {
-    height: multiply(al-cv-base-size, 1.5);
+  .lang-icon {
+    padding: 0px multiply(al-cv-base-size, 0.5);
+
+    img {
+      height: multiply(al-cv-font-size-m, 1);
+    }
   }
 }
 </style>
