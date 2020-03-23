@@ -28,14 +28,6 @@
           :class="{ enabled: skill.level >= i }"
         ></div>
       </div>
-
-      <div :key="`$${skillIdx}-interest`">
-        <span
-          v-if="skill.interest >= state.interest.limit"
-          class="material-icons interest"
-          >wifi</span
-        >
-      </div>
     </template>
   </div>
 </template>
@@ -122,13 +114,13 @@ $bullet-enabled-color: var(--al-cv-color-secondary-dark);
     }
 
     display: grid;
-    grid-template-columns: 3fr 2fr multiply(al-cv-font-size-m, 1.5);
+    grid-template-columns: 3fr 2fr;
     align-items: center;
     justify-items: start;
     gap: multiply(al-cv-base-size, 0.25);
 
     h3 {
-      grid-column: span 3;
+      grid-column: span 2;
       margin-bottom: multiply(al-cv-base-size, 0.5);
       color: var(--al-cv-color-primary);
     }
@@ -139,7 +131,7 @@ $bullet-enabled-color: var(--al-cv-color-secondary-dark);
       // display: none;
       // Layout: sizing
       position: relative;
-      width: calc(100% - #{multiply(al-cv-font-size-m, 0.5)});
+      width: 100%;
       height: multiply(al-cv-font-size-m, 1);
       padding: multiply(al-cv-base-size, 0.125);
       // Layout: sugar-coating
@@ -193,6 +185,18 @@ $bullet-enabled-color: var(--al-cv-color-secondary-dark);
         .skill-level-value {
           animation: animate-stripes 4s linear infinite;
           background-color: var(--al-cv-color-secondary-dark);
+
+          // &::before{
+          //   font-family: "Material Icons";
+          //   font-size: multiply(al-cv-font-size-m, 1);
+          //   height: multiply(al-cv-font-size-m, 1);
+          //   content: "wifi";
+          //   // color: $battery-bg-color;
+          //   color: blue;
+          //   top: 0;
+          //   left: calc(50% - 8px);
+          //   position: absolute;
+          // }
         }
       }
     }
@@ -229,7 +233,7 @@ $bullet-enabled-color: var(--al-cv-color-secondary-dark);
   .al-cv-skill {
     .skills-set {
       width: 25%;
-      grid-template-columns: 3fr 1fr multiply(al-cv-font-size-m, 0.5);
+      grid-template-columns: 3fr 1fr;
 
       &:first-of-type {
         padding-left: 0;

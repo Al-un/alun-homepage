@@ -80,7 +80,7 @@ export default defineComponent({
   // --- Typo
   font-family: var(--al-cv-font-family-text), monospace;
   font-size: var(--al-cv-font-size-m);
-  line-height: multiply(al-cv-font-size-m, 1.5);
+  line-height: multiply(al-cv-font-size-m, 1.75);
   h1,
   h2,
   h3,

@@ -8,7 +8,7 @@
       </span>
     </header>
 
-    <h3>
+    <div>
       <span class="exp-org">
         <cv-link
           v-if="experience.organisation.url"
@@ -18,7 +18,7 @@
         <span v-else>{{ experience.organisation.name }}</span>
       </span>
       <span class="exp-location">{{ experience.location | i18n }}</span>
-    </h3>
+    </div>
 
     <main>
       <base-text :content="experience.description" />
@@ -74,7 +74,7 @@ export default defineComponent({
 <style lang="scss">
 .al-cv-experience {
   header {
-    margin: multiply(al-cv-base-size, 0.5) 0;
+    margin-bottom: multiply(al-cv-base-size, 0.25);
   }
 
   .exp-title {
@@ -95,24 +95,27 @@ export default defineComponent({
   }
 
   .exp-org {
-    margin: multiply(al-cv-base-size, 0.5) multiply(al-cv-base-size, 0.5)
-      multiply(al-cv-base-size, 0.5) 0;
-    font-size: var(--al-cv-font-size-m);
+    // margin-right: multiply(al-cv-base-size, 0.5);
+
+    &::after{
+      content: ", "
+    }
   }
 
-  .exp-location {
-    font-style: italic;
-  }
+  // .exp-location {
+  //   font-style: italic;
+  // }
 
   main {
-    margin: multiply(al-cv-base-size, 0.75) 0;
+    margin: multiply(al-cv-base-size, 0.5) 0;
     color: var(--al-cv-color-on-surface-disabled);
   }
 
   footer {
     margin-top: multiply(al-cv-base-size, 0.5);
-    border-left: 2px solid var(--al-cv-color-secondary);
+    border-left: 3px solid var(--al-cv-color-secondary);
     padding-left: multiply(al-cv-base-size, 0.5);
+    font-style: italic;
 
     @include print-and-tablet {
       padding-left: multiply(al-cv-base-size, 1);
@@ -120,25 +123,18 @@ export default defineComponent({
 
     .roles-set,
     .skills-set {
-      margin: multiply(al-cv-base-size, 0.25) 0;
-
       :first-child {
         &::after {
-          margin-left: multiply(al-cv-base-size, 0.25);
           color: var(--al-cv-color-on-surface);
-          content: ": ";
+          content: " : ";
         }
-      }
-
-      :last-child {
-        font-style: italic;
       }
     }
   }
 }
 
 .al-cv-experience + .al-cv-experience {
-  margin-top: multiply(al-cv-base-size, 1.5);
+  margin-top: multiply(al-cv-base-size, 2);
 }
 
 @media print {

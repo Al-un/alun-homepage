@@ -1,14 +1,20 @@
 <template>
   <cv-section class="al-cv-introduction">
-    <div class="name">
-      <h1>{{ profile.name }}</h1>
-      <h2>{{ profile.title | i18n }}</h2>
-    </div>
+    <main class="profile">
+      <div class="identity">
+        <h1>{{ profile.name }}</h1>
+        <h2>{{ profile.title | i18n }}</h2>
+      </div>
 
-    <div class="contact">
-      <cv-link :url="`mailto:${profile.info.email}?subject=Contact from CV`" md-icon="email">{{
-        profile.info.email
-      }}</cv-link>
+      <cv-social-section :social="profile.social" />
+    </main>
+
+    <aside class="contact">
+      <cv-link
+        :url="`mailto:${profile.info.email}?subject=Contact from CV`"
+        md-icon="email"
+        >{{ profile.info.email }}</cv-link
+      >
 
       <cv-link :url="`tel:${profile.info.phone}`" md-icon="local_phone">{{
         profile.info.phone
@@ -19,9 +25,7 @@
         md-icon="location_on"
         >{{ profile.info.location }}</cv-link
       >
-    </div>
-
-    <cv-social-section :social="profile.social" />
+    </aside>
   </cv-section>
 </template>
 
@@ -51,6 +55,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+%flex-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .al-cv-introduction {
   @include print-and-tablet {
     // Layout
@@ -65,14 +75,38 @@ export default defineComponent({
     display: block;
   }
 
+  .profile {
+    display: flex;
+    flex-direction: column;
+
+    .identity {
+      display: flex;
+      flex-direction: column;
+
+      h1,
+      h2 {
+        text-align: center;
+      }
+
+      @include print-and-tablet {
+        flex-direction: row;
+
+        h1,
+        h2 {
+          text-align: left;
+        }
+      }
+    }
+  }
+
   h1 {
-    margin-bottom: multiply(al-cv-base-size, 0.75);
+    // margin-bottom: multiply(al-cv-base-size, 0.75);
     font-size: multiply(al-cv-font-size-m, 2);
     color: var(--al-cv-color-primary);
   }
 
   h2 {
-    margin-bottom: multiply(al-cv-base-size, 0.5);
+    // margin-bottom: multiply(al-cv-base-size, 0.5);
     font-size: multiply(al-cv-font-size-m, 1.25);
     color: var(--al-cv-color-secondary-dark);
   }

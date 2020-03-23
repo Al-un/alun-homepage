@@ -43,14 +43,11 @@ export default defineComponent({
   margin-top: multiply(al-cv-base-size, 0.5);
 
   @include print-and-tablet {
-    .al-link {
-      width: 50%;
-    }
     margin-top: 0px;
   }
 
   .al-link {
-    margin: multiply(al-cv-base-size, 0.25) 0px;
+    margin: multiply(al-cv-base-size, 0.25);
 
     @media print {
       font-size: multiply(al-cv-font-size-m, 0.75);

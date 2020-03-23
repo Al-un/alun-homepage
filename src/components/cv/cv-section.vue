@@ -42,6 +42,7 @@ export default defineComponent({
 
   .section-title {
     margin-bottom: multiply(al-cv-base-size, 0.5);
+    text-align: center;
 
     color: var(--al-cv-color-secondary-dark);
 

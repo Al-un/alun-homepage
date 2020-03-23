@@ -11,12 +11,14 @@
     /> -->
     <article v-for="(edu, idx) in educations.content" :key="`al-cv-edu-${idx}`">
       <h2>{{ edu.title | i18n }}</h2>
-      <h3>
+
+      <div>
         <cv-link v-if="edu.organisation.url" :url="edu.organisation.url">{{
           edu.organisation.name
         }}</cv-link>
         <span v-else>{{ experience.organisation.name }}</span>
-      </h3>
+      </div>
+
       <div>
         {{ edu.location | i18n }}, {{ edu.date.start | i18n }} -
         {{ edu.date.end | i18n }}

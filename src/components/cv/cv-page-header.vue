@@ -56,6 +56,14 @@ const THEMES: { [key: string]: { [key: string]: string } } = {
     "--al-cv-font-family-title": '"Source Code Pro"',
     "--al-cv-font-family-text": '"Source Sans Pro"'
   },
+  "Al-un": {
+    "--al-cv-color-primary": "#009688", // Teal 500
+    "--al-cv-color-primary-dark": "#00695C", // Teal 800
+    "--al-cv-color-secondary": "#9C27B0", // Purple 500
+    "--al-cv-color-secondary-dark": "#6A1B9A", // Purple 800
+    "--al-cv-color-on-primary": "#000000",
+    "--al-cv-font-family-title": '"Fira Mono"',
+  },
   "nerdy?": {
     "--al-cv-color-primary": "#00E676", // Green A400
     "--al-cv-color-primary-dark": "#00C853", // Green A700
