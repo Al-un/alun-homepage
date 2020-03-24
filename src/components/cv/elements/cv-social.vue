@@ -13,8 +13,7 @@
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
-import CvLink from "./cv-link.vue";
-import CvSection from "./cv-section.vue";
+import CvLink from "@/components/cv/elements/cv-link.vue";
 import { CvSocialSection } from "@/models";
 
 interface Props {
@@ -22,8 +21,8 @@ interface Props {
 }
 
 export default defineComponent({
-  name: "cv-social-section",
-  components: { CvLink, CvSection },
+  name: "cv-social",
+  components: { CvLink },
   props: {
     social: { type: Object, required: true }
   },

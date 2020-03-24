@@ -21,7 +21,7 @@
 import { defineComponent } from "@vue/composition-api";
 
 import CvSection from "./cv-section.vue";
-import CvSkillGroup from "./cv-skill-group.vue";
+import CvSkillGroup from "./elements/cv-skill-group.vue";
 import { CvSkillSection } from "@/models";
 
 interface Props {

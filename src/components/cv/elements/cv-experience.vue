@@ -39,7 +39,7 @@
 import { defineComponent, computed, reactive } from "@vue/composition-api";
 
 import { CvExperience } from "@/models";
-import CvLink from "./cv-link.vue";
+import CvLink from "@/components/cv/elements/cv-link.vue";
 
 interface Props {
   experience: CvExperience;
@@ -97,8 +97,8 @@ export default defineComponent({
   .exp-org {
     // margin-right: multiply(al-cv-base-size, 0.5);
 
-    &::after{
-      content: ", "
+    &::after {
+      content: ", ";
     }
   }
 

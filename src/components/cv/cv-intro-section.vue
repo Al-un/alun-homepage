@@ -1,40 +1,22 @@
 <template>
   <cv-section class="al-cv-introduction">
     <main class="profile">
-      <div class="identity">
-        <h1>{{ profile.name }}</h1>
-        <h2>{{ profile.title | i18n }}</h2>
-      </div>
-
-      <cv-social-section :social="profile.social" />
+      <cv-identity :profile="profile" />
+      <cv-social :social="profile.social" />
     </main>
 
-    <aside class="contact">
-      <cv-link
-        :url="`mailto:${profile.info.email}?subject=Contact from CV`"
-        md-icon="email"
-        >{{ profile.info.email }}</cv-link
-      >
-
-      <cv-link :url="`tel:${profile.info.phone}`" md-icon="local_phone">{{
-        profile.info.phone
-      }}</cv-link>
-
-      <cv-link
-        url="https://goo.gl/maps/1W5gGPXQ8UKkehrv6"
-        md-icon="location_on"
-        >{{ profile.info.location }}</cv-link
-      >
-    </aside>
+    <cv-contact :info="profile.info" />
   </cv-section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
-import CvLink from "./cv-link.vue";
+import CvContact from "@/components/cv/elements/cv-contact.vue";
+import CvIdentity from "./elements/cv-identity.vue";
+import CvLink from "./elements/cv-link.vue";
 import CvSection from "./cv-section.vue";
-import CvSocialSection from "@/components/cv/cv-social-section.vue";
+import CvSocial from "@/components/cv/elements/cv-social.vue";
 import { CvProfile } from "@/models";
 
 interface Props {
@@ -43,7 +25,7 @@ interface Props {
 
 export default defineComponent({
   name: "cv-intro-section",
-  components: { CvLink, CvSection, CvSocialSection },
+  components: { CvContact, CvIdentity, CvLink, CvSection, CvSocial },
   props: {
     profile: { type: Object, required: true }
   },
@@ -111,14 +93,8 @@ export default defineComponent({
     color: var(--al-cv-color-secondary-dark);
   }
 
-  .name,
-  .contact {
+  .name {
     flex-shrink: 0;
-  }
-
-  .contact {
-    margin: 0px multiply(al-cv-base-size, 0.75);
-    font-size: multiply(al-cv-font-size-m, 0.8);
   }
 }
 </style>

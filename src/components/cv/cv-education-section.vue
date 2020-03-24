@@ -30,8 +30,7 @@
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
-import CvLink from "./cv-link.vue";
-import CvExperience from "./cv-experience.vue";
+import CvLink from "./elements/cv-link.vue";
 import CvSection from "./cv-section.vue";
 
 import { CvExperienceSection } from "@/models";
@@ -42,7 +41,7 @@ interface Props {
 
 export default defineComponent({
   name: "cv-education-section",
-  components: { CvExperience, CvLink, CvSection },
+  components: { CvLink, CvSection },
   props: {
     educations: { type: Object, required: true }
   },

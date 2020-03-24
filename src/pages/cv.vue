@@ -33,12 +33,11 @@ import CvExperienceSection from "@/components/cv/cv-experience-section.vue";
 import CvHobbySection from "@/components/cv/cv-hobby-section.vue";
 import CvIntroSection from "@/components/cv/cv-intro-section.vue";
 import CvLanguageSection from "@/components/cv/cv-language-section.vue";
-import CvLink from "@/components/cv/cv-link.vue";
+import CvLink from "@/components/cv/elements/cv-link.vue";
 import CvPageHeader from "@/components/cv/cv-page-header.vue";
 import CvPageFooter from "@/components/cv/cv-page-footer.vue";
 import CvSection from "@/components/cv/cv-section.vue";
 import CvSkillSection from "@/components/cv/cv-skill-section.vue";
-import CvSocialSection from "@/components/cv/cv-social-section.vue";
 import { MyCV } from "@/data/cv";
 
 export default defineComponent({
@@ -53,8 +52,7 @@ export default defineComponent({
     CvPageHeader,
     CvPageFooter,
     CvSection,
-    CvSkillSection,
-    CvSocialSection
+    CvSkillSection
   },
 
   setup() {

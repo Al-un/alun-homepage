@@ -61,7 +61,7 @@ export default defineComponent({
   // text zone
   .text {
     text-decoration: none;
-    transition: text-decoration 0.2s; 
+    transition: text-decoration 0.2s;
   }
 
   // open in new window icon
