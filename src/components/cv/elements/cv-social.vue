@@ -41,29 +41,46 @@ export default defineComponent({
   justify-content: space-evenly;
   margin-top: multiply(al-cv-base-size, 0.5);
 
-  @include print-and-tablet {
-    margin-top: 0px;
-  }
-
   .al-link {
-    margin: multiply(al-cv-base-size, 0.25);
-
-    @media print {
-      font-size: multiply(al-cv-font-size-m, 0.75);
-    }
+    padding: 0px multiply(al-cv-base-size, 0.5);
 
     .text {
       display: none;
-
-      @include print-and-tablet {
-        display: inline-block;
-      }
     }
 
     .open-in-new {
       display: none;
+    }
+  }
+}
 
-      @include for-tablet-portrait-up {
+@include print-and-tablet {
+  .al-cv-social {
+    margin-top: 0px;
+
+    .al-link {
+      border-left: 2px solid var(--al-cv-color-primary);
+
+      &:last-of-type {
+        border-right: 2px solid var(--al-cv-color-primary);
+      }
+
+      .icon,
+      img {
+        display: none;
+      }
+
+      .text {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+@include for-tablet-portrait-up {
+  .al-cv-social {
+    .al-link {
+      .open-in-new {
         display: inline-block;
       }
     }

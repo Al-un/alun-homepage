@@ -38,7 +38,6 @@ $bullet-enabled-color: var(--al-cv-color-secondary-dark);
   // --- Skill bullet style --
   .skill-level-bullet {
     width: 100%;
-    display: none;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;

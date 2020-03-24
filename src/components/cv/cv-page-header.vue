@@ -61,8 +61,16 @@ const THEMES: { [key: string]: { [key: string]: string } } = {
     "--al-cv-color-primary-dark": "#00695C", // Teal 800
     "--al-cv-color-secondary": "#9C27B0", // Purple 500
     "--al-cv-color-secondary-dark": "#6A1B9A", // Purple 800
+    "--al-cv-color-body-bg": "#222",
+    "--al-cv-color-surface-bg": "#efefef",
+    "--al-cv-color-on-surface": "#000000",
+    "--al-cv-color-on-surface-disabled": "#424242",
     "--al-cv-color-on-primary": "#000000",
+    "--al-cv-color-on-secondary": "#000000",
+    "--al-cv-base-size": "1rem",
+    "--al-cv-font-size-m": "1rem",
     "--al-cv-font-family-title": '"Fira Mono"',
+    "--al-cv-font-family-text": '"Source Sans Pro"'
   },
   "nerdy?": {
     "--al-cv-color-primary": "#00E676", // Green A400

@@ -10,7 +10,12 @@
         {{ skill.name | i18n }}
       </div>
 
-      <cv-skill-battery :key="`$${skillIdx}-level-battery`" :skill="skill" />
+      <cv-skill-battery
+        :key="`$${skillIdx}-level-battery`"
+        :skill="skill"
+        :interest-limit="state.interest.limit"
+        :level-max="state.level.max"
+      />
 
       <cv-skill-bullet :key="`$${skillIdx}-level-bullet`" :skill="skill" />
     </template>
@@ -36,13 +41,20 @@ export default defineComponent({
   },
 
   setup() {
-    return {};
+    return {
+      state: {
+        interest: { limit: 4 },
+        level: { max: 5 }
+      }
+    };
   }
 });
 </script>
 
 <style lang="scss">
 .al-cv-skill {
+  line-height: multiply(al-cv-font-size-m, 1.25);
+
   .skills-set {
     // flexbox from parent
     width: 100%;
@@ -72,13 +84,13 @@ export default defineComponent({
 
     // -- Skill battery level --
     // the small tip on the right is all depending on al-cv-font-size-m
-    // .skill-level {
-    //   display: none;
-    // }
+    .skill-level-battery {
+      display: none;
+    }
 
     // --- Skill bullet style --
     .skill-level-bullet {
-      display: none;
+      display: flex;
     }
 
     // --- Interest ---
@@ -99,13 +111,13 @@ export default defineComponent({
         padding-left: 0;
       }
 
-      .skill-level {
+      .skill-level-battery {
         display: none;
       }
 
       .interested-skill {
-        color: var(--al-cv-color-secondary-dark);
-        font-family: var(--al-cv-font-family-title);
+        // color: var(--al-cv-color-secondary-dark);
+        // font-family: var(--al-cv-font-family-title);
       }
 
       .skill-level-bullet {

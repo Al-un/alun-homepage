@@ -1,11 +1,11 @@
 <template>
   <div
     class="skill-level-battery"
-    :class="{ 'charging-skill': skill.interest >= state.interest.limit }"
+    :class="{ 'charging-skill': skill.interest >= interestLimit }"
   >
     <div
       class="skill-level-value"
-      :style="`width: ${(100 * skill.level) / state.level.max}%`"
+      :style="`width: ${(100 * skill.level) / levelMax}%`"
     ></div>
   </div>
 </template>
@@ -17,21 +17,20 @@ import { CvSkill } from "@/models";
 
 interface Props {
   skill: CvSkill;
+  interestLimit: number;
+  levelMax: number;
 }
 
 export default defineComponent({
   name: "cv-skill-battery",
   props: {
-    skill: { type: Object, required: true }
+    skill: { type: Object, required: true },
+    interestLimit: { type: Number, required: true },
+    levelMax: { type: Number, required: true }
   },
 
   setup() {
-    return {
-      state: {
-        level: { max: 5 },
-        interest: { limit: 4 }
-      }
-    };
+    return {};
   }
 });
 </script>
@@ -59,7 +58,8 @@ Old stripe effect:
 */
 
 // local usage only
-$battery-border-color: var(--al-cv-color-secondary-dark);
+$battery-normal-color: var(--al-cv-color-secondary);
+$battery-charging-color: var(--al-cv-color-secondary-dark);
 $battery-bg-color: #eee;
 
 // Charging battery animation
@@ -83,7 +83,7 @@ $battery-bg-color: #eee;
     padding: multiply(al-cv-base-size, 0.125);
     // Layout: sugar-coating
     border-radius: multiply(al-cv-base-size, 0.2);
-    border: 2px solid $battery-border-color;
+    border: 2px solid $battery-normal-color;
     // Theming
     background-color: $battery-bg-color;
 
@@ -100,14 +100,12 @@ $battery-bg-color: #eee;
       border-top-right-radius: multiply(al-cv-base-size, 0.125);
       border-bottom-right-radius: multiply(al-cv-base-size, 0.125);
       // Theming
-      background-color: $battery-border-color;
+      background-color: $battery-normal-color;
     }
 
     .skill-level-value {
       height: 100%;
-      // Stripping effect
-      // background-color: var(--al-cv-color-primary);
-      background-color: var(--al-cv-color-secondary);
+      background-color: $battery-normal-color;
       background-size: 30px 30px;
       background-image: linear-gradient(
         135deg,
@@ -129,9 +127,14 @@ $battery-bg-color: #eee;
     }
 
     &.charging-skill {
+      border-color: $battery-charging-color;
+      &::after {
+        background-color: $battery-charging-color;
+      }
+
       .skill-level-value {
         animation: animate-stripes 4s linear infinite;
-        background-color: var(--al-cv-color-secondary-dark);
+        background-color: $battery-charging-color;
 
         // &::before{
         //   font-family: "Material Icons";

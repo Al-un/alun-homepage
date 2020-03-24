@@ -1,0 +1,168 @@
+<template>
+  <article class="al-cv-experience">
+    <header>
+      <div>
+        <h2 class="exp-title">{{ experience.title | i18n }}</h2>
+        <span class="exp-org">
+          <cv-link
+            v-if="experience.organisation.url"
+            :url="experience.organisation.url"
+            >{{ experience.organisation.name }}</cv-link
+          >
+          <span v-else>{{ experience.organisation.name }}</span>
+        </span>
+      </div>
+
+      <div>
+        <span class="exp-location">{{ experience.location | i18n }}</span>
+        <span class="exp-date">
+          {{ experience.date.start | i18n }} -
+          {{ experience.date.end | i18n }}
+        </span>
+      </div>
+    </header>
+
+    <main>
+      <base-text :content="experience.description" />
+    </main>
+
+    <footer>
+      <div v-if="translated.roles" class="roles-set">
+        <span>Roles</span><span>{{ translated.roles }}</span>
+      </div>
+      <div v-if="translated.skills" class="skills-set">
+        <span>Tech</span><span>{{ translated.skills }}</span>
+      </div>
+    </footer>
+  </article>
+</template>
+
+<script lang="ts">
+import { defineComponent, computed, reactive } from "@vue/composition-api";
+
+import { CvExperience } from "@/models";
+import CvLink from "@/components/cv/elements/cv-link.vue";
+
+interface Props {
+  experience: CvExperience;
+}
+
+export default defineComponent({
+  name: "cv-experience",
+  components: { CvLink },
+  props: {
+    experience: { type: Object, required: true }
+  },
+
+  setup(props: Props) {
+    const translated = reactive({
+      skills: computed(() =>
+        props.experience.skills
+          ? props.experience.skills.en.join(", ")
+          : undefined
+      ),
+      roles: computed(() =>
+        props.experience.roles
+          ? props.experience.roles.en.join(", ")
+          : undefined
+      )
+    });
+
+    return { translated };
+  }
+});
+</script>
+
+<style lang="scss">
+.al-cv-experience {
+  header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: multiply(al-cv-base-size, 0.25);
+
+    & > :last-child {
+      width: 100%;
+    }
+  }
+
+  .exp-title {
+    display: inline-block;
+    color: var(--al-cv-color-primary);
+    font-size: multiply(al-cv-font-size-m, 1.25);
+  }
+
+  h3 {
+    margin-bottom: multiply(al-cv-base-size, 0.5);
+  }
+
+  .exp-org {
+    &::before {
+      content: " @ ";
+    }
+  }
+
+  .exp-location {
+    border-right: 1px solid var(--al-cv-color-primary);
+    padding-right: multiply(al-cv-base-size, 0.5);
+    margin-right: multiply(al-cv-base-size, 0.25);
+  }
+
+  main {
+    margin: multiply(al-cv-base-size, 0.5) 0;
+    color: var(--al-cv-color-on-surface-disabled);
+  }
+
+  footer {
+    margin-top: multiply(al-cv-base-size, 0.5);
+    border-left: 3px solid var(--al-cv-color-secondary);
+    padding-left: multiply(al-cv-base-size, 0.5);
+    font-style: italic;
+
+    @include print-and-tablet {
+      padding-left: multiply(al-cv-base-size, 1);
+    }
+
+    .roles-set,
+    .skills-set {
+      :first-child {
+        &::after {
+          color: var(--al-cv-color-on-surface);
+          content: " : ";
+        }
+      }
+    }
+  }
+}
+
+.al-cv-experience + .al-cv-experience {
+  margin-top: multiply(al-cv-base-size, 2);
+}
+
+@media print {
+  .al-cv-experience {
+    .exp-title {
+      font-size: multiply(al-cv-font-size-m, 1);
+    }
+  }
+}
+
+@include print-and-tablet {
+  .al-cv-experience {
+    header {
+      & > :last-child {
+        width: auto;
+      }
+    }
+  }
+}
+
+@include for-phone-only {
+  .al-cv-experience {
+    .exp-title {
+      font-size: multiply(al-cv-font-size-m, 1);
+    }
+  }
+}
+</style>
