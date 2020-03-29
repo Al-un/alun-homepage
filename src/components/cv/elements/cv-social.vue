@@ -5,8 +5,7 @@
       :key="`al-cv-social-${idx}`"
       :url="socialLink.url"
       :img="socialLink.img"
-      >{{ socialLink.name | i18n }}</cv-link
-    >
+    >{{ socialLink.name | i18n }}</cv-link>
   </div>
 </template>
 
@@ -39,11 +38,16 @@ export default defineComponent({
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
   margin-top: multiply(al-cv-base-size, 0.5);
 
   .al-link {
     padding: 0px multiply(al-cv-base-size, 0.5);
+    border-left: 2px solid var(--al-cv-color-primary);
 
+    &:last-of-type {
+      border-right: 2px solid var(--al-cv-color-primary);
+    }
     .text {
       display: none;
     }
@@ -59,12 +63,6 @@ export default defineComponent({
     margin-top: 0px;
 
     .al-link {
-      border-left: 2px solid var(--al-cv-color-primary);
-
-      &:last-of-type {
-        border-right: 2px solid var(--al-cv-color-primary);
-      }
-
       .icon,
       img {
         display: none;
@@ -80,6 +78,7 @@ export default defineComponent({
 @include for-tablet-portrait-up {
   .al-cv-social {
     .al-link {
+      // Don't display the open-new-tab icon in print
       .open-in-new {
         display: inline-block;
       }

@@ -31,6 +31,8 @@ export default defineComponent({
   .identity {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
 
     h1,
     h2 {
@@ -45,7 +47,8 @@ export default defineComponent({
 
     h2 {
       // margin-bottom: multiply(al-cv-base-size, 0.5);
-      font-size: multiply(al-cv-font-size-m, 1.25);
+      padding-left: multiply(al-cv-base-size, 0.5);
+      font-size: multiply(al-cv-font-size-m, 1.5);
       color: var(--al-cv-color-secondary-dark);
     }
 

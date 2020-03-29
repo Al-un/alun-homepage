@@ -29,6 +29,16 @@ requireComponent.keys().forEach(fileName => {
 import { translate } from "@/utils";
 Vue.filter("i18n", translate);
 
+// import I18nPlugin from "@/plugins/i18n";
+// import { default as en } from "@/utils/i18n/en.json";
+// import { default as fr } from "@/utils/i18n/fr.json";
+
+// Vue.use(I18nPlugin, {
+//   supportedLanguages: ["en", "fr"],
+//   langLoader: () => "en",
+//   sources: { en: [en], fr: [fr] }
+// });
+
 // ----- Application specific imports
 import app from "./app.vue";
 import "./styles/main.scss";
