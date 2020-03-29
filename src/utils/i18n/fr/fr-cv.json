@@ -1,7 +1,9 @@
 {
   "cv": {
-    "header.theme": "Changer theme",
+    "header.theme": "Theme",
     "header.print": "Imprimer",
+    "skills.intro.print": "",
+    "skills.intro.web": "",
     "footer.code-hosted": "",
     "footer.code-deployed": "",
     "footer.code-tested": ""

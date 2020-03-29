@@ -1,7 +1,7 @@
 <template>
   <cv-section
     :section="educations"
-    class="al-cv-education"
+    class="al-cv-educations"
     title-md-icon="school"
   >
     <!-- <cv-experience
@@ -53,7 +53,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.al-cv-education {
+.al-cv-educations {
   h2 {
     color: var(--al-cv-color-primary);
   }

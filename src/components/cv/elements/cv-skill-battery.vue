@@ -60,7 +60,7 @@ Old stripe effect:
 // local usage only
 $battery-normal-color: var(--al-cv-color-secondary);
 $battery-charging-color: var(--al-cv-color-secondary-dark);
-$battery-bg-color: #eee;
+$battery-bg-color: var(--al-cv-color-skill-battery-bg);
 
 // Charging battery animation
 @keyframes animate-stripes {
@@ -68,7 +68,13 @@ $battery-bg-color: #eee;
     background-position: 0 0;
     background-color: $battery-charging-color;
   }
+  25%{
+    background-color: $battery-normal-color;
+  }
   50%{
+    background-color: $battery-charging-color;
+  }
+  75%{
     background-color: $battery-normal-color;
   }
   100% {

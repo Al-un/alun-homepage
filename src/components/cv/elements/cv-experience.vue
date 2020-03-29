@@ -1,5 +1,6 @@
 <template>
   <article class="al-cv-experience">
+    <p>DEPRECATED</p>
     <header>
       <h2 class="exp-title">{{ experience.title | i18n }}</h2>
       <span class="exp-date">

@@ -56,7 +56,6 @@ export default defineComponent({
 @include print-and-tablet {
   .al-cv-social {
     justify-content: flex-start;
-    margin: 0px;
 
     .al-link {
       .icon,
@@ -70,7 +69,7 @@ export default defineComponent({
     }
 
     .al-link + .al-link {
-      margin-left: multiply(al-cv-base-size, 0.5);
+      margin-left: multiply(al-cv-base-size, 1);
     }
   }
 }
@@ -83,6 +82,18 @@ export default defineComponent({
         display: inline-block;
       }
     }
+  }
+}
+
+@media print {
+  .al-cv-social {
+    margin: 0px;
+  }
+}
+
+@include for-tablet-landscape-up {
+  .al-cv-social {
+    margin: 0px;
   }
 }
 </style>

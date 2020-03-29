@@ -2,10 +2,12 @@
   <header class="al-cv-page-header">
     <div class="content">
       <div></div>
+
       <div class="actions">
         <div class="theme-change">
           <span class="material-icons">invert_colors</span>
           <span class="text">{{ "cv.header.theme" | i18n }}:</span>
+
           <select v-model="state.activeTheme">
             <option
               v-for="(t, idx) in Object.keys(state.themes)"
@@ -35,66 +37,22 @@ import {
   defineComponent,
   reactive,
   computed,
-  watch
+  watch,
+  SetupContext
 } from "@vue/composition-api";
 
-/**
- * https://material.io/design/color/#color-usage-palettes
- */
-const THEMES: { [key: string]: { [key: string]: string } } = {
-  "blue-orange": {
-    "--al-cv-color-primary": "#1976D2", // Blue 700
-    "--al-cv-color-primary-dark": "#0D47A1", // Blue 900
-    "--al-cv-color-secondary": "#FB8C00", // Orange 600
-    "--al-cv-color-secondary-dark": "#ef6c00", // Orange 800
-    "--al-cv-color-body-bg": "#222",
-    "--al-cv-color-surface-bg": "#efefef",
-    "--al-cv-color-on-surface": "#000000",
-    "--al-cv-color-on-surface-disabled": "#424242",
-    "--al-cv-color-on-primary": "#ffffff",
-    "--al-cv-color-on-secondary": "#000000",
-    "--al-cv-base-size": "1rem",
-    "--al-cv-font-size-m": "1rem",
-    "--al-cv-font-family-title": '"Source Code Pro"',
-    "--al-cv-font-family-text": '"Source Sans Pro"'
-  },
-  "Al-un": {
-    "--al-cv-color-primary": "#009688", // Teal 500
-    "--al-cv-color-primary-dark": "#00695C", // Teal 800
-    "--al-cv-color-secondary": "#9C27B0", // Purple 500
-    "--al-cv-color-secondary-dark": "#6A1B9A", // Purple 800
-    "--al-cv-color-body-bg": "#222",
-    "--al-cv-color-surface-bg": "#efefef",
-    "--al-cv-color-on-surface": "#000000",
-    "--al-cv-color-on-surface-disabled": "#424242",
-    "--al-cv-color-on-primary": "#000000",
-    "--al-cv-color-on-secondary": "#000000",
-    "--al-cv-base-size": "1rem",
-    "--al-cv-font-size-m": "1rem",
-    "--al-cv-font-family-title": '"Fira Mono"',
-    "--al-cv-font-family-text": '"Source Sans Pro"'
-  },
-  "nerdy?": {
-    "--al-cv-color-primary": "#00E676", // Green A400
-    "--al-cv-color-primary-dark": "#00C853", // Green A700
-    "--al-cv-color-secondary": "#9C27B0", // Purple 500
-    "--al-cv-color-secondary-dark": "#6A1B9A", // Purple 800
-    "--al-cv-color-on-primary": "#000000",
-    "--al-cv-font-family-title": '"Fira Mono"',
-    "--al-cv-font-family-text": '"Fira Mono"'
-  }
-};
+import { CV_THEMES, CV_THEME_DEFAULT, loadTheme } from "@/utils/cv";
 
 export default defineComponent({
   name: "cv-page-header",
   components: {},
   props: {},
 
-  setup() {
+  setup(props: {}, ctx: SetupContext) {
     const state = reactive({
       hasPrint: computed(() => typeof window.print === "function"),
-      themes: THEMES,
-      activeTheme: "blue-orange"
+      themes: CV_THEMES,
+      activeTheme: CV_THEME_DEFAULT
     });
 
     const print = () => window.print();
@@ -102,13 +60,16 @@ export default defineComponent({
     watch(
       () => state.activeTheme,
       (newVal, oldVal) => {
-        const newTheme = THEMES[newVal];
-
-        Object.keys(newTheme).forEach(key => {
-          const val = newTheme[key];
-          document.documentElement.style.setProperty(key, val);
+        // Update theme
+        const newTheme = CV_THEMES[newVal];
+        loadTheme(newTheme);
+        // Update URL which does not re-render the CV page!
+        ctx.root.$router.push({
+          path: ctx.root.$route.path,
+          query: { theme: newVal }
         });
-      }
+      },
+      { lazy: true }
     );
 
     return {
@@ -131,15 +92,17 @@ export default defineComponent({
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
   .content {
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: multiply(al-cv-base-size, 0.5) 0;
+    align-items: center;
 
     .actions {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: stretch;
+      // justify-content: stretch;
 
       & > div {
         display: flex;
@@ -148,15 +111,24 @@ export default defineComponent({
       }
 
       & > * {
-        padding: 0 multiply(al-cv-base-size, 1);
+        margin: 0 multiply(al-cv-base-size, 0.5);
+        padding: 0px multiply(al-cv-base-size, 0.25);
       }
 
-      select {
-        padding: multiply(al-cv-base-size, 0.25);
-        background: var(--al-cv-color-primary);
-        color: var(--al-cv-color-on-primary);
+      .theme-change {
         border: 1px solid var(--al-cv-color-on-primary);
         border-radius: multiply(al-cv-base-size, 0.25);
+
+        select {
+          padding: multiply(al-cv-base-size, 0.25);
+          background: var(--al-cv-color-primary);
+          color: var(--al-cv-color-on-primary);
+          border: 0;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
       }
     }
   }
@@ -185,7 +157,7 @@ export default defineComponent({
 
 @include for-phone-only {
   .al-cv-page-header {
-    .header-btn {
+    .actions {
       .text {
         display: none;
       }

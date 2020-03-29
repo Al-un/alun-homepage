@@ -44,15 +44,6 @@ export default defineComponent({
 }
 
 .al-cv-introduction {
-  @include print-and-tablet {
-    // Layout
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    // Theming
-    border-bottom: 1px solid var(--al-cv-color-primary);
-  }
-
   .al-link {
     display: block;
   }
@@ -65,36 +56,48 @@ export default defineComponent({
       display: flex;
       flex-direction: column;
 
-      h1,
-      h2 {
-        text-align: center;
-      }
-
       @include print-and-tablet {
-        flex-direction: row;
-
-        h1,
-        h2 {
-          text-align: left;
-        }
       }
     }
-  }
-
-  h1 {
-    // margin-bottom: multiply(al-cv-base-size, 0.75);
-    font-size: multiply(al-cv-font-size-m, 2);
-    color: var(--al-cv-color-primary);
-  }
-
-  h2 {
-    // margin-bottom: multiply(al-cv-base-size, 0.5);
-    font-size: multiply(al-cv-font-size-m, 1.25);
-    color: var(--al-cv-color-secondary-dark);
   }
 
   .name {
     flex-shrink: 0;
   }
+}
+
+@include for-tablet-portrait-up {
+  .al-cv-introduction {
+    .profile {
+      .identity {
+        flex-direction: row;
+      }
+    }
+  }
+}
+
+@mixin for-tablet-landscape-and-print {
+  .al-cv-introduction {
+    // Layout
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .profile {
+      justify-content: space-between;
+
+      .identity {
+        flex-direction: row;
+      }
+    }
+  }
+}
+
+@media print {
+  @include for-tablet-landscape-and-print;
+}
+
+@include for-tablet-landscape-up {
+  @include for-tablet-landscape-and-print;
 }
 </style>

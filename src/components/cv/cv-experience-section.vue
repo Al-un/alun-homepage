@@ -1,7 +1,7 @@
 <template>
   <cv-section
     :section="experiences"
-    class="al-cv-experience"
+    class="al-cv-experiences"
     title-md-icon="work_outline"
   >
     <cv-experience
@@ -35,8 +35,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style lang="scss">
-.al-cv-experience {
-}
-</style>

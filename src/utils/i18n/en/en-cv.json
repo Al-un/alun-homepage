@@ -1,7 +1,9 @@
 {
   "cv": {
-    "header.theme": "Change theme",
+    "header.theme": "Theme",
     "header.print": "Print",
+    "skills.intro.print": "Self assessment of my current readiness for each topic.",
+    "skills.intro.web": "Self batteries check and currently charging up the topics I am currently interested in.",
     "footer.code-hosted": "Code is hosted on",
     "footer.code-deployed": "and deployed on",
     "footer.code-tested": "Works better on Chrome. Developed with Chrome 80.0.xxx and Firefox 74.0"

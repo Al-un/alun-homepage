@@ -5,6 +5,8 @@
     <main class="al-cv-page">
       <cv-intro-section :profile="profile" />
 
+      <cv-separator />
+
       <base-link class="check-my-online-cv" href="https://cv.al-un.fr"
         >Feel free to check the online version: https://cv.al-un.fr</base-link
       >
@@ -13,6 +15,8 @@
       <cv-section :section="profile.aboutMe" title-md-icon="fingerprint" />
       <cv-skill-section :skills="profile.skills" />
       <cv-experience-section :experiences="profile.experiences" />
+
+      <cv-separator />
 
       <aside class="al-cv-misc">
         <cv-language-section :languages="profile.languages" />
@@ -26,7 +30,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "@vue/composition-api";
+import {
+  defineComponent,
+  computed,
+  onMounted,
+  SetupContext
+} from "@vue/composition-api";
 
 import CvEducationSection from "@/components/cv/cv-education-section.vue";
 import CvExperienceSection from "@/components/cv/cv-experience-section.vue";
@@ -37,8 +46,16 @@ import CvLink from "@/components/cv/elements/cv-link.vue";
 import CvPageHeader from "@/components/cv/cv-page-header.vue";
 import CvPageFooter from "@/components/cv/cv-page-footer.vue";
 import CvSection from "@/components/cv/cv-section.vue";
+import CvSeparator from "@/components/cv/elements/cv-separator.vue";
 import CvSkillSection from "@/components/cv/cv-skill-section.vue";
+
 import { MyCV } from "@/data/cv";
+import {
+  CV_THEMES,
+  loadTheme,
+  CV_THEME_DEFAULT,
+  CV_THEME_NAMES
+} from "@/utils/cv";
 
 export default defineComponent({
   name: "Cv",
@@ -52,11 +69,34 @@ export default defineComponent({
     CvPageHeader,
     CvPageFooter,
     CvSection,
+    CvSeparator,
     CvSkillSection
   },
 
-  setup() {
+  setup(props: {}, ctx: SetupContext) {
     const profile = computed(() => MyCV);
+
+    onMounted(() => {
+      // Get parameter
+      const themeParam = ctx.root.$route.query["theme"];
+      let requestedTheme = "";
+      if (typeof themeParam === "string") {
+        requestedTheme = themeParam;
+      }
+      if (Array.isArray(themeParam)) {
+        const firstThemeParam = themeParam[0];
+        requestedTheme = firstThemeParam !== null ? firstThemeParam : "";
+      }
+
+      if (CV_THEME_NAMES.includes(requestedTheme)) {
+        console.debug(`[CV] Loading theme: <${requestedTheme}>`);
+        loadTheme(CV_THEMES[requestedTheme]);
+      } else {
+        console.debug(`[CV] Loading default theme`);
+        loadTheme(CV_THEMES[CV_THEME_DEFAULT]);
+      }
+    });
+
     return { profile };
   }
 });
@@ -118,21 +158,17 @@ export default defineComponent({
       flex-direction: row;
       flex-wrap: wrap;
 
-      @include print-and-tablet {
-        margin-top: multiply(al-cv-base-size, 1.5);
-        padding-top: multiply(al-cv-base-size, 1);
-        border-top: 1px solid var(--al-cv-color-primary);
-      }
-
+      // default: column mode in smartphone
       .al-cv-section {
         width: 100%;
       }
 
+      // Tablet, desktop and print: on a same row
       @include print-and-tablet {
         .al-cv-languages {
           width: 25%;
         }
-        .al-cv-education {
+        .al-cv-educations {
           width: 40%;
         }
         .al-cv-hobbies {

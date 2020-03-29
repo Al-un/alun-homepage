@@ -18,6 +18,7 @@
   --al-cv-color-on-surface-disabled: #424242;
   --al-cv-color-on-primary: #ffffff;
   --al-cv-color-on-secondary: #000000;
+  --al-cv-color-skill-battery-bg: #eee;
   --al-cv-base-size: 1rem;
   --al-cv-font-size-m: 1rem;
   --al-cv-font-family-title: "Source Code Pro";
@@ -66,9 +67,7 @@
 
 @media print {
   .al-cv {
-    //   --al-cv-color-body-bg: #ffffff;
-    //   --al-cv-color-surface-bg: #ffffff;
     --al-cv-base-size: 0.75rem;
-    --al-cv-font-size-m: 12pt;
+    --al-cv-font-size-m: 10pt;
   }
 }

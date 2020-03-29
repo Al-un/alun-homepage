@@ -1,13 +1,7 @@
 <template>
   <cv-section :section="skills" class="al-cv-skill" title-md-icon="code">
-    <p class="intro on-screen-only">
-      Self assessment of my current capabilities and currently charging up
-      batteries for the topics I am currently interested in.
-    </p>
-    <p class="intro on-print-only">
-      Levels are self assessed with highlighting on topics I am currently
-      interested in.
-    </p>
+    <p class="intro on-screen-only">{{ "cv.skills.intro.web" | i18n }}</p>
+    <p class="intro on-print-only">{{ "cv.skills.intro.print" | i18n }}</p>
 
     <div class="skills-list">
       <cv-skill-group

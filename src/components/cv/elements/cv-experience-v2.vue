@@ -90,7 +90,8 @@ export default defineComponent({
   .exp-title {
     display: inline-block;
     color: var(--al-cv-color-primary);
-    font-size: multiply(al-cv-font-size-m, 1.25);
+    font-weight: bold;
+    transition: color 0.2s;
   }
 
   h3 {
@@ -119,6 +120,7 @@ export default defineComponent({
     border-left: 3px solid var(--al-cv-color-secondary);
     padding-left: multiply(al-cv-base-size, 0.5);
     font-style: italic;
+    transition: border-left 0.2s;
 
     @include print-and-tablet {
       padding-left: multiply(al-cv-base-size, 1);
@@ -134,18 +136,20 @@ export default defineComponent({
       }
     }
   }
+
+  &:hover {
+    .exp-title {
+      color: var(--al-cv-color-primary-dark);
+    }
+
+    footer {
+      border-left: 3px solid var(--al-cv-color-secondary-dark);
+    }
+  }
 }
 
 .al-cv-experience + .al-cv-experience {
   margin-top: multiply(al-cv-base-size, 2);
-}
-
-@media print {
-  .al-cv-experience {
-    .exp-title {
-      font-size: multiply(al-cv-font-size-m, 1);
-    }
-  }
 }
 
 @include print-and-tablet {
@@ -154,14 +158,6 @@ export default defineComponent({
       & > :last-child {
         width: auto;
       }
-    }
-  }
-}
-
-@include for-phone-only {
-  .al-cv-experience {
-    .exp-title {
-      font-size: multiply(al-cv-font-size-m, 1);
     }
   }
 }

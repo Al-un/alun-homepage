@@ -77,7 +77,7 @@ export const fetchMessage = (
   // Check
   if (!message) {
     throw new Error(
-      `[I18n Plugin] Value not fount for input ${input} and lang ${lang}`
+      `[I18n Plugin] Value not found for input ${input} and lang ${lang}`
     );
   }
 
