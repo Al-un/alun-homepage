@@ -46,11 +46,15 @@ $bullet-enabled-color: var(--al-cv-color-secondary-dark);
       border-radius: 50%;
       width: multiply(al-cv-font-size-m, 0.6);
       height: multiply(al-cv-font-size-m, 0.6);
-      border: multiply(al-cv-font-size-m, 0.3) solid $bullet-disabled-color;
+      border: multiply(al-cv-font-size-m, 0.4) solid $bullet-disabled-color;
 
       &.enabled {
-        border: multiply(al-cv-font-size-m, 0.3) solid $bullet-enabled-color;
+        border: multiply(al-cv-font-size-m, 0.4) solid $bullet-enabled-color;
       }
+    }
+
+    .bullet + .bullet {
+      margin-left: multiply(al-cv-base-size, 0.5);
     }
   }
 }

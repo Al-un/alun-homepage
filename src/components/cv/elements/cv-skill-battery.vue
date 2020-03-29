@@ -66,9 +66,14 @@ $battery-bg-color: #eee;
 @keyframes animate-stripes {
   0% {
     background-position: 0 0;
+    background-color: $battery-charging-color;
+  }
+  50%{
+    background-color: $battery-normal-color;
   }
   100% {
     background-position: 60px 0;
+    background-color: $battery-charging-color;
   }
 }
 
@@ -133,7 +138,7 @@ $battery-bg-color: #eee;
       }
 
       .skill-level-value {
-        animation: animate-stripes 4s linear infinite;
+        animation: animate-stripes 3s linear infinite;
         background-color: $battery-charging-color;
 
         // &::before{

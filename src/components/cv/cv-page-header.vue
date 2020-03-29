@@ -4,7 +4,8 @@
       <div></div>
       <div class="actions">
         <div class="theme-change">
-          <p>Change theme:</p>
+          <span class="material-icons">invert_colors</span>
+          <span class="text">{{ "cv.header.theme" | i18n }}:</span>
           <select v-model="state.activeTheme">
             <option
               v-for="(t, idx) in Object.keys(state.themes)"
@@ -21,7 +22,8 @@
           class="header-btn print-btn"
           @click="print"
         >
-          <span class="material-icons">print</span>Print
+          <span class="material-icons">print</span>
+          <span class="text">{{ "cv.header.print" | i18n }}</span>
         </button>
       </div>
     </div>
@@ -119,9 +121,14 @@ export default defineComponent({
 
 <style lang="scss">
 .al-cv-page-header {
+  position: sticky;
+  top: 0;
+  z-index: $z-index-header;
   height: multiply(al-cv-base-size, 3);
   background-color: var(--al-cv-color-primary);
   color: var(--al-cv-color-on-primary);
+  // Credits: https://codepen.io/sdthornton/pen/wBZdXq
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
   .content {
     display: flex;
@@ -154,10 +161,6 @@ export default defineComponent({
     }
   }
 
-  @include print-and-tablet {
-    margin-bottom: multiply(al-cv-base-size, 1);
-  }
-
   .header-btn {
     background: none;
     border-radius: multiply(al-cv-base-size, 0.25);
@@ -177,6 +180,16 @@ export default defineComponent({
 
   .header-btn + .header-btn {
     margin-left: multiply(al-cv-base-size, 0.5);
+  }
+}
+
+@include for-phone-only {
+  .al-cv-page-header {
+    .header-btn {
+      .text {
+        display: none;
+      }
+    }
   }
 }
 </style>

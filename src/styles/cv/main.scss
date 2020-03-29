@@ -1,13 +1,13 @@
 // CSS var
 // https://material.io/design/color/the-color-system.html#tools-for-picking-colors
-:root {
+.al-cv {
   // default color T_T https://material.io/design/material-theming/implementing-your-theme.html#color
   // --al-cv-color-primary: #6200ee;
   // --al-cv-color-primary-dark: #3700b3;
   // --al-cv-color-secondary: #03dac6;
   // --al-cv-color-secondary-dark: #018786;
 
-  --al-cv-color-primary: #1E88E5; // Blue 600
+  --al-cv-color-primary: #1e88e5; // Blue 600
   --al-cv-color-primary-dark: #1565c0; // Blue 800
   --al-cv-color-secondary: #ff9800; // Orange 500
   --al-cv-color-secondary-dark: #ef6c00; // Orange 800
@@ -65,15 +65,10 @@
 }
 
 @media print {
-  :root {
-    --al-cv-color-primary: pink;
-    --al-cv-color-body-bg: #ffffff;
-    --al-cv-color-surface-bg: #ffffff;
+  .al-cv {
+    //   --al-cv-color-body-bg: #ffffff;
+    //   --al-cv-color-surface-bg: #ffffff;
     --al-cv-base-size: 0.75rem;
-    --al-cv-font-size-m: 6pt;
+    --al-cv-font-size-m: 12pt;
   }
-
-  // body{
-  //   margin: 1cm;
-  // }
 }

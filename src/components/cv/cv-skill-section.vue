@@ -9,11 +9,13 @@
       interested in.
     </p>
 
-    <cv-skill-group
-      v-for="(skillGroup, grpIdx) in skills.content"
-      :key="grpIdx"
-      :skill-group="skillGroup"
-    />
+    <div class="skills-list">
+      <cv-skill-group
+        v-for="(skillGroup, grpIdx) in skills.content"
+        :key="grpIdx"
+        :skill-group="skillGroup"
+      />
+    </div>
   </cv-section>
 </template>
 
@@ -43,18 +45,15 @@ export default defineComponent({
 
 <style lang="scss">
 .al-cv-skill {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-
-  .section-title {
-    width: 100%;
+  .intro {
+    margin-bottom: multiply(al-cv-base-size, 0.25);
   }
 
-  .intro {
-    width: 100%;
-    margin-bottom: multiply(al-cv-base-size, 0.25);
+  .skills-list {
+    display: grid;
+    gap: multiply(al-cv-base-size, 1);
+    grid-template-columns: 1fr;
+    align-items: start;
   }
 
   .on-screen-only {
@@ -65,8 +64,28 @@ export default defineComponent({
   }
 }
 
+@include for-tablet-portrait-up {
+  .al-cv-skill {
+    .skills-list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@include for-tablet-landscape-up {
+  .al-cv-skill {
+    .skills-list {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+}
+
 @media print {
   .al-cv-skill {
+    .skills-list {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
     .on-screen-only {
       display: none;
     }

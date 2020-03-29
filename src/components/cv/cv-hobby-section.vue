@@ -39,11 +39,13 @@ export default defineComponent({
 
 <style lang="scss">
 .al-cv-hobbies {
+  line-height: initial;
+
   .al-cv-hobby {
-    border-left: 1px solid var(--al-cv-color-primary);
-    padding: 0px multiply(al-cv-base-size, 0.5);
     display: inline-block;
+    padding: 0px multiply(al-cv-base-size, 0.5);
     margin-bottom: multiply(al-cv-base-size, 0.5);
+    border-left: 1px solid var(--al-cv-color-primary);
 
     &:last-of-type {
       border-right: 1px solid var(--al-cv-color-primary);

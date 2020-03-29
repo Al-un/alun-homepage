@@ -44,6 +44,7 @@ export default defineComponent({
   display: grid;
   grid-template-columns: auto 1fr;
   gap: multiply(al-cv-base-size, 0.5) 0px;
+  line-height: initial;
 
   .section-title {
     grid-column: span 2;

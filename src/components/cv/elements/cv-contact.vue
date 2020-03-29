@@ -42,14 +42,31 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.al-cv-introduction {
-  .contact {
-    flex-shrink: 0;
-  }
+.contact {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: multiply(al-cv-font-size-m, 0.8);
+}
 
+@include for-tablet-portrait-up {
   .contact {
-    margin: 0px multiply(al-cv-base-size, 0.75);
-    font-size: multiply(al-cv-font-size-m, 0.8);
+    flex-direction: row;
+  }
+}
+
+@include for-tablet-landscape-up {
+  .contact {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+@media print {
+  .contact {
+    flex-direction: column;
+    align-items: flex-end;
   }
 }
 </style>

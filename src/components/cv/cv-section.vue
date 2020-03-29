@@ -41,18 +41,23 @@ export default defineComponent({
   padding: multiply(al-cv-base-size, 1);
 
   .section-title {
-    margin-bottom: multiply(al-cv-base-size, 0.5);
-    text-align: center;
+    margin-bottom: multiply(al-cv-base-size, 1);
 
-    color: var(--al-cv-color-secondary-dark);
-
+    color: var(--al-cv-color-secondary);
     font-size: multiply(al-cv-font-size-m, 1);
     text-transform: uppercase;
+    transition: color 0.2s;
 
     .material-icons {
       font-size: multiply(al-cv-font-size-m, 1.55);
       margin-right: multiply(al-cv-base-size, 0.5);
       vertical-align: bottom;
+    }
+  }
+
+  &:hover {
+    .section-title {
+      color: var(--al-cv-color-secondary-dark);
     }
   }
 }

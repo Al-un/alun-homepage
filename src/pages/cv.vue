@@ -99,10 +99,6 @@ export default defineComponent({
     background-color: var(--al-cv-color-surface-bg);
     color: var(--al-cv-color-on-surface);
 
-    @include print-and-tablet {
-      border-radius: multiply(al-cv-base-size, 0.5);
-    }
-
     .check-my-online-cv {
       display: none;
       padding: multiply(al-cv-base-size, 0.125);

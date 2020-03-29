@@ -32,12 +32,7 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-end;
-
-    h1,
-    h2 {
-      text-align: center;
-    }
+    align-items: center;
 
     h1 {
       // margin-bottom: multiply(al-cv-base-size, 0.75);

@@ -26,18 +26,20 @@ requireComponent.keys().forEach(fileName => {
 });
 
 // Filters
-import { translate } from "@/utils";
-Vue.filter("i18n", translate);
+// import { translate } from "@/utils";
+// Vue.filter("i18n", translate);
 
-// import I18nPlugin from "@/plugins/i18n";
-// import { default as en } from "@/utils/i18n/en.json";
-// import { default as fr } from "@/utils/i18n/fr.json";
+import I18nPlugin from "@/plugins/i18n";
+import { default as en } from "@/utils/i18n/en.json";
+import { default as enCv } from "@/utils/i18n/en/en-cv.json";
+import { default as fr } from "@/utils/i18n/fr.json";
+import { default as frCv } from "@/utils/i18n/fr/fr-cv.json";
 
-// Vue.use(I18nPlugin, {
-//   supportedLanguages: ["en", "fr"],
-//   langLoader: () => "en",
-//   sources: { en: [en], fr: [fr] }
-// });
+Vue.use(I18nPlugin, {
+  supportedLanguages: ["en", "fr"],
+  langLoader: () => "en",
+  sources: { en: [en, enCv], fr: [fr, frCv] }
+});
 
 // ----- Application specific imports
 import app from "./app.vue";

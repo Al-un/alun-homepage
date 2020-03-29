@@ -56,20 +56,6 @@ export default defineComponent({
   line-height: multiply(al-cv-font-size-m, 1.25);
 
   .skills-set {
-    // flexbox from parent
-    width: 100%;
-    @include for-tablet-portrait-up {
-      padding: 0px multiply(al-cv-base-size, 0.75);
-      width: 50%;
-      &:first-of-type,
-      &:nth-of-type(3) {
-        padding-left: 0;
-      }
-    }
-    @include for-tablet-landscape-up {
-      width: 25%;
-    }
-
     display: grid;
     grid-template-columns: 3fr 2fr;
     align-items: center;
@@ -78,19 +64,21 @@ export default defineComponent({
 
     h3 {
       grid-column: span 2;
-      margin-bottom: multiply(al-cv-base-size, 0.5);
+      margin: multiply(al-cv-base-size, 0.5) 0px;
       color: var(--al-cv-color-primary);
     }
 
     // -- Skill battery level --
     // the small tip on the right is all depending on al-cv-font-size-m
     .skill-level-battery {
-      display: none;
+      // display: none;
+      display: block;
     }
 
     // --- Skill bullet style --
     .skill-level-bullet {
-      display: flex;
+      // display: flex;
+      display: none;
     }
 
     // --- Interest ---
