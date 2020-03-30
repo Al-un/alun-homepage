@@ -35,24 +35,25 @@ export default defineComponent({
     align-items: center;
 
     h1 {
-      // margin-bottom: multiply(al-cv-base-size, 0.75);
       font-size: multiply(al-cv-font-size-m, 2);
       color: var(--al-cv-color-primary);
     }
 
     h2 {
-      // margin-bottom: multiply(al-cv-base-size, 0.5);
-      padding-left: multiply(al-cv-base-size, 0.5);
       font-size: multiply(al-cv-font-size-m, 1.5);
-      color: var(--al-cv-color-secondary-dark);
+      color: var(--al-cv-color-secondary);
     }
 
     @include print-and-tablet {
       flex-direction: row;
+      align-items: baseline;
 
-      h1,
+      h1 {
+        font-size: multiply(al-cv-font-size-m, 2.5);
+      }
       h2 {
-        text-align: left;
+        font-size: multiply(al-cv-font-size-m, 1.5);
+        padding-left: multiply(al-cv-base-size, 1);
       }
     }
   }

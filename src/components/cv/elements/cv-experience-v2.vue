@@ -7,8 +7,7 @@
           <cv-link
             v-if="experience.organisation.url"
             :url="experience.organisation.url"
-            >{{ experience.organisation.name }}</cv-link
-          >
+          >{{ experience.organisation.name }}</cv-link>
           <span v-else>{{ experience.organisation.name }}</span>
         </span>
       </div>
@@ -28,10 +27,12 @@
 
     <footer>
       <div v-if="translated.roles" class="roles-set">
-        <span>Roles</span><span>{{ translated.roles }}</span>
+        <span>Roles</span>
+        <span>{{ translated.roles }}</span>
       </div>
       <div v-if="translated.skills" class="skills-set">
-        <span>Tech</span><span>{{ translated.skills }}</span>
+        <span>Tech</span>
+        <span>{{ translated.skills }}</span>
       </div>
     </footer>
   </article>
@@ -99,8 +100,16 @@ export default defineComponent({
   }
 
   .exp-org {
+    display: inline-block;
+    width: 100%;
+
     &::before {
-      content: " @ ";
+      content: "@";
+    }
+
+    @include print-and-tablet {
+      width: auto;
+      margin-left: multiply(al-cv-base-size, 0.5);
     }
   }
 
@@ -108,6 +117,10 @@ export default defineComponent({
     border-right: 1px solid var(--al-cv-color-primary);
     padding-right: multiply(al-cv-base-size, 0.5);
     margin-right: multiply(al-cv-base-size, 0.25);
+  }
+
+  .exp-date {
+    transition: color 0.2s;
   }
 
   main {
@@ -118,12 +131,12 @@ export default defineComponent({
   footer {
     margin-top: multiply(al-cv-base-size, 0.5);
     border-left: 3px solid var(--al-cv-color-secondary);
-    padding-left: multiply(al-cv-base-size, 0.5);
+    padding-left: multiply(al-cv-base-size, 0.75);
     font-style: italic;
     transition: border-left 0.2s;
 
     @include print-and-tablet {
-      padding-left: multiply(al-cv-base-size, 1);
+      padding-left: multiply(al-cv-base-size, 1.5);
     }
 
     .roles-set,
@@ -137,9 +150,14 @@ export default defineComponent({
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     .exp-title {
       color: var(--al-cv-color-primary-dark);
+    }
+
+    .exp-date {
+      color: var(--al-cv-color-secondary-dark);
     }
 
     footer {

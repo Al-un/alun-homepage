@@ -1,29 +1,4 @@
-// CSS var
-// https://material.io/design/color/the-color-system.html#tools-for-picking-colors
-.al-cv {
-  // default color T_T https://material.io/design/material-theming/implementing-your-theme.html#color
-  // --al-cv-color-primary: #6200ee;
-  // --al-cv-color-primary-dark: #3700b3;
-  // --al-cv-color-secondary: #03dac6;
-  // --al-cv-color-secondary-dark: #018786;
-
-  --al-cv-color-primary: #1e88e5; // Blue 600
-  --al-cv-color-primary-dark: #1565c0; // Blue 800
-  --al-cv-color-secondary: #ff9800; // Orange 500
-  --al-cv-color-secondary-dark: #ef6c00; // Orange 800
-
-  --al-cv-color-body-bg: #222;
-  --al-cv-color-surface-bg: #efefef;
-  --al-cv-color-on-surface: #000000;
-  --al-cv-color-on-surface-disabled: #424242;
-  --al-cv-color-on-primary: #ffffff;
-  --al-cv-color-on-secondary: #000000;
-  --al-cv-color-skill-battery-bg: #eee;
-  --al-cv-base-size: 1rem;
-  --al-cv-font-size-m: 1rem;
-  --al-cv-font-family-title: "Source Code Pro";
-  --al-cv-font-family-text: "Source Sans Pro";
-}
+// CSS variables are initialised by JavaScript
 
 // ---------- Printing
 

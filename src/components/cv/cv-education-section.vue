@@ -1,21 +1,19 @@
 <template>
-  <cv-section
-    :section="educations"
-    class="al-cv-educations"
-    title-md-icon="school"
-  >
+  <cv-section :section="educations" class="al-cv-educations" title-md-icon="school">
     <!-- <cv-experience
       v-for="(xp, idx) in educations.content"
       :key="`al-cv-edu-${idx}`"
       :experience="xp"
-    /> -->
-    <article v-for="(edu, idx) in educations.content" :key="`al-cv-edu-${idx}`">
+    />-->
+    <article
+      v-for="(edu, idx) in educations.content"
+      :key="`al-cv-edu-${idx}`"
+      class="al-cv-education"
+    >
       <h2>{{ edu.title | i18n }}</h2>
 
       <div>
-        <cv-link v-if="edu.organisation.url" :url="edu.organisation.url">{{
-          edu.organisation.name
-        }}</cv-link>
+        <cv-link v-if="edu.organisation.url" :url="edu.organisation.url">{{ edu.organisation.name }}</cv-link>
         <span v-else>{{ experience.organisation.name }}</span>
       </div>
 
@@ -54,8 +52,20 @@ export default defineComponent({
 
 <style lang="scss">
 .al-cv-educations {
-  h2 {
-    color: var(--al-cv-color-primary);
+  .al-cv-education {
+    h2 {
+      color: var(--al-cv-color-primary);
+      transition: color 0.2s;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .al-cv-education {
+      h2 {
+        color: var(--al-cv-color-primary-dark);
+      }
+    }
   }
 }
 </style>

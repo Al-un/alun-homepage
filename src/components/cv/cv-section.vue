@@ -55,7 +55,8 @@ export default defineComponent({
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     .section-title {
       color: var(--al-cv-color-secondary-dark);
     }

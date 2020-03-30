@@ -72,7 +72,8 @@ export default defineComponent({
   }
 
   // Hovering
-  &:hover {
+  &:hover,
+  &:focus {
     color: var(--al-cv-color-primary);
 
     .text {

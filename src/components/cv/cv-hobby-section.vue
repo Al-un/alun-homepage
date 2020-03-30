@@ -45,10 +45,10 @@ export default defineComponent({
     display: inline-block;
     padding: 0px multiply(al-cv-base-size, 0.5);
     margin-bottom: multiply(al-cv-base-size, 0.5);
-    border-left: 1px solid var(--al-cv-color-primary);
+    border-left: 2px solid var(--al-cv-color-primary);
 
     &:last-of-type {
-      border-right: 1px solid var(--al-cv-color-primary);
+      border-right: 2px solid var(--al-cv-color-primary);
     }
   }
 }

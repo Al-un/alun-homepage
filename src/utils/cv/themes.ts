@@ -5,6 +5,23 @@ export const CV_THEME_NAMES = ["Al-un", "blue-orange", "Nerdy?"];
  * https://material.io/design/color/#color-usage-palettes
  */
 export const CV_THEMES: { [key: string]: { [key: string]: string } } = {
+  [CV_THEME_NAMES[0]]: {
+    "--al-cv-color-primary": "#26A69A", // Teal 400
+    "--al-cv-color-primary-dark": "#00796B", // Teal 700
+    "--al-cv-color-secondary": "#E91E63", // Pink 500
+    "--al-cv-color-secondary-dark": "#C2185B", // Pink 700
+    "--al-cv-color-body-bg": "#263238", // Blue-gray 900
+    "--al-cv-color-surface-bg": "#FFFFFF",
+    "--al-cv-color-on-surface": "#212121", // Gray 900
+    "--al-cv-color-on-surface-disabled": "#616161", // Gray 700
+    "--al-cv-color-on-primary": "#ECEFF1", // Blue-gray 50
+    "--al-cv-color-on-secondary": "#000000",
+    "--al-cv-color-skill-battery-bg": "#ECEFF1", // Blue-gray 50
+    "--al-cv-base-size": "1rem",
+    "--al-cv-font-size-m": "1rem",
+    "--al-cv-font-family-title": '"Fira Code"',
+    "--al-cv-font-family-text": '"Open Sans"'
+  },
   [CV_THEME_NAMES[1]]: {
     "--al-cv-color-primary": "#1976D2", // Blue 700
     "--al-cv-color-primary-dark": "#0D47A1", // Blue 900
@@ -20,24 +37,7 @@ export const CV_THEMES: { [key: string]: { [key: string]: string } } = {
     "--al-cv-base-size": "1rem",
     "--al-cv-font-size-m": "1rem",
     "--al-cv-font-family-title": '"Source Code Pro"',
-    "--al-cv-font-family-text": '"Source Sans Pro"'
-  },
-  [CV_THEME_NAMES[0]]: {
-    "--al-cv-color-primary": "#009688", // Teal 500
-    "--al-cv-color-primary-dark": "#00695C", // Teal 800
-    "--al-cv-color-secondary": "#9C27B0", // Purple 500
-    "--al-cv-color-secondary-dark": "#6A1B9A", // Purple 800
-    "--al-cv-color-body-bg": "#222",
-    "--al-cv-color-surface-bg": "#efefef",
-    "--al-cv-color-on-surface": "#000000",
-    "--al-cv-color-on-surface-disabled": "#424242",
-    "--al-cv-color-on-primary": "#FFFFFF",
-    "--al-cv-color-on-secondary": "#000000",
-    "--al-cv-color-skill-battery-bg": "#eee",
-    "--al-cv-base-size": "1rem",
-    "--al-cv-font-size-m": "1rem",
-    "--al-cv-font-family-title": '"Fira Mono"',
-    "--al-cv-font-family-text": '"Source Sans Pro"'
+    "--al-cv-font-family-text": '"Roboto"'
   },
   [CV_THEME_NAMES[2]]: {
     "--al-cv-color-primary": "#B2FF59", // Green A200
@@ -54,7 +54,7 @@ export const CV_THEMES: { [key: string]: { [key: string]: string } } = {
     "--al-cv-base-size": "0.75rem",
     "--al-cv-font-size-m": "1rem",
     "--al-cv-font-family-title": '"Fira Mono"',
-    "--al-cv-font-family-text": '"Fira Mono"'
+    "--al-cv-font-family-text": '"Source Code Pro"'
   }
 };
 

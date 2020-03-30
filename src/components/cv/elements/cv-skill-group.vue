@@ -1,14 +1,12 @@
 <template>
   <div class="skills-set">
-    <h3>{{ skillGroup.name | i18n }}</h3>
+    <h3 class="skills-group-name">{{ skillGroup.name | i18n }}</h3>
 
     <template v-for="(skill, skillIdx) in skillGroup.skills">
       <div
         :key="`${skillIdx}-name`"
         :class="{ 'interested-skill': skill.interest >= state.interest.limit }"
-      >
-        {{ skill.name | i18n }}
-      </div>
+      >{{ skill.name | i18n }}</div>
 
       <cv-skill-battery
         :key="`$${skillIdx}-level-battery`"
@@ -62,10 +60,11 @@ export default defineComponent({
     justify-items: start;
     gap: multiply(al-cv-base-size, 0.25);
 
-    h3 {
+    .skills-group-name {
       grid-column: span 2;
       margin: multiply(al-cv-base-size, 0.5) 0px;
       color: var(--al-cv-color-primary);
+      transition: color 0.2s;
     }
 
     // -- Skill battery level --
@@ -85,6 +84,13 @@ export default defineComponent({
     .material-icons {
       color: var(--al-cv-secondary-dark);
       font-size: multiply(al-cv-font-size-m, 1);
+    }
+
+    &:hover,
+    &:focus {
+      .skills-group-name {
+        color: var(--al-cv-color-primary-dark);
+      }
     }
   }
 }
