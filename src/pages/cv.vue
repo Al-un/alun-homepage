@@ -7,10 +7,6 @@
 
       <cv-separator />
 
-      <base-link class="check-my-online-cv" href="https://cv.al-un.fr"
-        >Feel free to check the online version: https://cv.al-un.fr</base-link
-      >
-
       <cv-section :section="profile.objective" title-md-icon="flight_takeoff" />
       <cv-section :section="profile.aboutMe" title-md-icon="fingerprint" />
       <cv-skill-section :skills="profile.skills" />
@@ -51,7 +47,7 @@ import CvSkillSection from "@/components/cv/cv-skill-section.vue";
 
 import { MyCV } from "@/data/cv";
 import {
-  CV_THEMES,
+  CV_THEMES_WEB,
   loadTheme,
   CV_THEME_DEFAULT,
   CV_THEME_NAMES
@@ -90,10 +86,10 @@ export default defineComponent({
 
       if (CV_THEME_NAMES.includes(requestedTheme)) {
         console.debug(`[CV] Loading theme: <${requestedTheme}>`);
-        loadTheme(CV_THEMES[requestedTheme]);
+        loadTheme(CV_THEMES_WEB[requestedTheme]);
       } else {
         console.debug(`[CV] Loading default theme`);
-        loadTheme(CV_THEMES[CV_THEME_DEFAULT]);
+        loadTheme(CV_THEMES_WEB[CV_THEME_DEFAULT]);
       }
     });
 
@@ -139,20 +135,6 @@ export default defineComponent({
     background-color: var(--al-cv-color-surface-bg);
     color: var(--al-cv-color-on-surface);
 
-    .check-my-online-cv {
-      display: none;
-      padding: multiply(al-cv-base-size, 0.125);
-      border-bottom: 1px solid var(--al-cv-color-primary);
-      text-align: center;
-      font-size: multiply(al-cv-font-size-m, 0.8);
-      font-family: var(--al-cv-font-family-title);
-      color: var(--al-cv-color-primary);
-
-      @media print {
-        display: block;
-      }
-    }
-
     .al-cv-misc {
       display: flex;
       flex-direction: row;
@@ -180,15 +162,17 @@ export default defineComponent({
 }
 
 @media print {
-  .al-cv-page-header,
-  .al-cv-page-footer {
-    display: none;
-  }
+  .al-cv {
+    .al-cv-page-header,
+    .al-cv-page-footer {
+      display: none;
+    }
 
-  .al-cv-page {
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
+    .al-cv-page {
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+    }
   }
 }
 </style>

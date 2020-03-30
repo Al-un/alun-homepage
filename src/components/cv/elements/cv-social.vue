@@ -5,8 +5,9 @@
       :key="`al-cv-social-${idx}`"
       :url="socialLink.url"
       :img="socialLink.img"
-      >{{ socialLink.name | i18n }}</cv-link
-    >
+    >{{ socialLink.name | i18n }}</cv-link>
+
+    <cv-link class="online-cv" url="https://cv.al-un.fr">{{ "cv.social.online-cv" | i18n }}</cv-link>
   </div>
 </template>
 
@@ -50,6 +51,10 @@ export default defineComponent({
     .open-in-new {
       display: none;
     }
+
+    &.online-cv {
+      display: none;
+    }
   }
 }
 
@@ -88,6 +93,12 @@ export default defineComponent({
 @media print {
   .al-cv-social {
     margin: 0px;
+
+    .al-link {
+      &.online-cv {
+        display: inline-block;
+      }
+    }
   }
 }
 

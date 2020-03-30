@@ -2,6 +2,7 @@
   "cv": {
     "header.theme": "Theme",
     "header.print": "Imprimer",
+    "social.online-cv": "",
     "skills.intro.print": "",
     "skills.intro.web": "",
     "footer.code-hosted": "",

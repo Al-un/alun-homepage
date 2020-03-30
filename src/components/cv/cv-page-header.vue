@@ -14,16 +14,11 @@
               :key="idx"
               :value="t"
               :selected="state.activeTheme === t"
-              >{{ t }}</option
-            >
+            >{{ t }}</option>
           </select>
         </div>
 
-        <button
-          v-if="state.hasPrint"
-          class="header-btn print-btn"
-          @click="print"
-        >
+        <button v-if="state.hasPrint" class="header-btn print-btn" @click="print">
           <span class="material-icons">print</span>
           <span class="text">{{ "cv.header.print" | i18n }}</span>
         </button>
@@ -38,10 +33,16 @@ import {
   reactive,
   computed,
   watch,
-  SetupContext
+  SetupContext,
+  onMounted
 } from "@vue/composition-api";
 
-import { CV_THEMES, CV_THEME_DEFAULT, loadTheme } from "@/utils/cv";
+import {
+  CV_THEMES_WEB,
+  CV_THEME_DEFAULT,
+  loadTheme,
+  CV_THEMES_PRINT
+} from "@/utils/cv";
 
 export default defineComponent({
   name: "cv-page-header",
@@ -51,17 +52,19 @@ export default defineComponent({
   setup(props: {}, ctx: SetupContext) {
     const state = reactive({
       hasPrint: computed(() => typeof window.print === "function"),
-      themes: CV_THEMES,
+      themes: CV_THEMES_WEB,
       activeTheme: CV_THEME_DEFAULT
     });
 
-    const print = () => window.print();
+    const print = () => {
+      window.print();
+    };
 
     watch(
       () => state.activeTheme,
       (newVal, oldVal) => {
         // Update theme
-        const newTheme = CV_THEMES[newVal];
+        const newTheme = CV_THEMES_WEB[newVal];
         loadTheme(newTheme);
         // Update URL which does not re-render the CV page!
         ctx.root.$router.push({
@@ -71,6 +74,15 @@ export default defineComponent({
       },
       { lazy: true }
     );
+
+    onMounted(() => {
+      window.onbeforeprint = () => {
+        loadTheme(CV_THEMES_PRINT[state.activeTheme]);
+      };
+      window.onafterprint = () => {
+        loadTheme(CV_THEMES_WEB[state.activeTheme]);
+      };
+    });
 
     return {
       state,

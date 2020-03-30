@@ -39,10 +39,3 @@
     content: "";
   }
 }
-
-@media print {
-  .al-cv {
-    --al-cv-base-size: 0.75rem;
-    --al-cv-font-size-m: 10pt;
-  }
-}

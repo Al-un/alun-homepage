@@ -2,6 +2,7 @@
   "cv": {
     "header.theme": "Theme",
     "header.print": "Print",
+    "social.online-cv": "Online CV",
     "skills.intro.print": "Self assessment of my current readiness for each topic.",
     "skills.intro.web": "Self batteries check and currently charging up the topics I am currently interested in.",
     "footer.code-hosted": "Code is hosted on",

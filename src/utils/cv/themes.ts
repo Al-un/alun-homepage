@@ -1,10 +1,10 @@
 export const CV_THEME_DEFAULT = "Al-un";
 
-export const CV_THEME_NAMES = ["Al-un", "blue-orange", "Nerdy?"];
+export const CV_THEME_NAMES = ["Al-un", "blue-orange", "Nerdy?", "With purple"];
 /**
  * https://material.io/design/color/#color-usage-palettes
  */
-export const CV_THEMES: { [key: string]: { [key: string]: string } } = {
+export const CV_THEMES_WEB: { [key: string]: { [key: string]: string } } = {
   [CV_THEME_NAMES[0]]: {
     "--al-cv-color-primary": "#26A69A", // Teal 400
     "--al-cv-color-primary-dark": "#00796B", // Teal 700
@@ -55,6 +55,59 @@ export const CV_THEMES: { [key: string]: { [key: string]: string } } = {
     "--al-cv-font-size-m": "1rem",
     "--al-cv-font-family-title": '"Fira Mono"',
     "--al-cv-font-family-text": '"Source Code Pro"'
+  },
+  [CV_THEME_NAMES[3]]: {
+    "--al-cv-color-primary": "#26A69A", // Teal 400
+    "--al-cv-color-primary-dark": "#00796B", // Teal 700
+    "--al-cv-color-secondary": "#9C27B0", // Purple 500
+    "--al-cv-color-secondary-dark": "#7B1FA2", // Purple 700
+    "--al-cv-color-body-bg": "#263238", // Blue-gray 900
+    "--al-cv-color-surface-bg": "#FFFFFF",
+    "--al-cv-color-on-surface": "#212121", // Gray 900
+    "--al-cv-color-on-surface-disabled": "#616161", // Gray 700
+    "--al-cv-color-on-primary": "#ECEFF1", // Blue-gray 50
+    "--al-cv-color-on-secondary": "#000000",
+    "--al-cv-color-skill-battery-bg": "#ECEFF1", // Blue-gray 50
+    "--al-cv-base-size": "1rem",
+    "--al-cv-font-size-m": "1rem",
+    "--al-cv-font-family-title": '"Fira Code"',
+    "--al-cv-font-family-text": '"Open Sans"'
+  }
+};
+
+/**
+ * Printing variations of each theme
+ * https://www.joomlasrilanka.com/web-design-development-blog/web-design-font-size-measurements-convert-points-pixelsems-percentages-web-designing/
+ */
+export const CV_THEMES_PRINT: { [key: string]: { [key: string]: string } } = {
+  [CV_THEME_NAMES[0]]: {
+    "--al-cv-base-size": "0.8rem",
+    "--al-cv-font-size-m": "10pt"
+  },
+  [CV_THEME_NAMES[1]]: {
+    "--al-cv-base-size": "0.8rem",
+    "--al-cv-font-size-m": "10pt"
+  },
+  [CV_THEME_NAMES[2]]: {
+    "--al-cv-color-primary": "#CDDC39", // Lime 500
+    "--al-cv-color-primary-dark": "#AFB42B", // Lime 700
+    "--al-cv-color-secondary": "#00BCD4", // Cyan 500
+    "--al-cv-color-secondary-dark": "#0097A7", // Cyan 700
+    "--al-cv-color-body-bg": "#FFFFFF",
+    "--al-cv-color-surface-bg": "#FFFFFF",
+    "--al-cv-color-on-surface": "#37474F", // Blue gray 800
+    "--al-cv-color-on-surface-disabled": "#546E7A", // Blue gray 600
+    "--al-cv-color-on-primary": "#000000",
+    "--al-cv-color-on-secondary": "#000000",
+    "--al-cv-color-skill-battery-bg": "#37474F",
+    "--al-cv-base-size": "0.8rem",
+    "--al-cv-font-size-m": "8pt",
+    "--al-cv-font-family-title": '"Fira Mono"',
+    "--al-cv-font-family-text": '"Source Code Pro"'
+  },
+  [CV_THEME_NAMES[3]]: {
+    "--al-cv-base-size": "0.8rem",
+    "--al-cv-font-size-m": "10pt"
   }
 };
 
@@ -64,6 +117,6 @@ export const loadTheme = (theme: { [key: string]: string }): void => {
 
   Object.keys(theme).forEach(key => {
     const val = theme[key];
-    (alCvNode as any).style.setProperty(key, val);
+    (alCvNode as HTMLElement).style.setProperty(key, val);
   });
 };
