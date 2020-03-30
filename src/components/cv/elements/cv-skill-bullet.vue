@@ -31,21 +31,23 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-$bullet-disabled-color: #ccc;
-$bullet-enabled-color: var(--al-cv-color-secondary-dark);
+$bullet-disabled-color: #cfd8dc; // Blue-gray 100
+$bullet-enabled-color: var(--al-cv-color-secondary);
 
-.al-cv-skill {
+.al-cv-skills {
   // --- Skill bullet style --
   .skill-level-bullet {
     width: 100%;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     align-items: center;
 
     .bullet {
+      flex-shrink: 0;
+      flex-grow: 0;
       border-radius: 50%;
-      width: multiply(al-cv-font-size-m, 0.6);
-      height: multiply(al-cv-font-size-m, 0.6);
+      width: multiply(al-cv-font-size-m, 0.7);
+      height: multiply(al-cv-font-size-m, 0.7);
       border: multiply(al-cv-font-size-m, 0.4) solid $bullet-disabled-color;
 
       &.enabled {
@@ -54,13 +56,13 @@ $bullet-enabled-color: var(--al-cv-color-secondary-dark);
     }
 
     .bullet + .bullet {
-      margin-left: multiply(al-cv-base-size, 0.5);
+      margin-left: multiply(al-cv-base-size, 0.25);
     }
   }
 }
 
 @media print {
-  .al-cv-skill {
+  .al-cv-skills {
     .skill-level-bullet {
       display: flex;
     }

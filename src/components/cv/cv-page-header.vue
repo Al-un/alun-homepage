@@ -4,6 +4,16 @@
       <div></div>
 
       <div class="actions">
+        <!-- <div class="lang-change">
+          <span class="material-icons">invert_colors</span>
+          <span class="text">{{ "cv.header.lang" | i18n }}:</span>
+
+          <select v-model="state.activeLang">
+            <option value="en" :selected="state.activeLang === 'en'">English</option>
+            <option value="fr" :selected="state.activeLang === 'fr'">French</option>
+          </select>
+        </div> -->
+
         <div class="theme-change">
           <span class="material-icons">invert_colors</span>
           <span class="text">{{ "cv.header.theme" | i18n }}:</span>
@@ -43,6 +53,7 @@ import {
   loadTheme,
   CV_THEMES_PRINT
 } from "@/utils/cv";
+import { setLanguage } from "../../utils/i18n";
 
 export default defineComponent({
   name: "cv-page-header",
@@ -53,7 +64,8 @@ export default defineComponent({
     const state = reactive({
       hasPrint: computed(() => typeof window.print === "function"),
       themes: CV_THEMES_WEB,
-      activeTheme: CV_THEME_DEFAULT
+      activeTheme: CV_THEME_DEFAULT,
+      activeLang: localStorage.getItem("lang") || "en"
     });
 
     const print = () => {
@@ -62,7 +74,7 @@ export default defineComponent({
 
     watch(
       () => state.activeTheme,
-      (newVal, oldVal) => {
+      newVal => {
         // Update theme
         const newTheme = CV_THEMES_WEB[newVal];
         loadTheme(newTheme);
@@ -71,6 +83,15 @@ export default defineComponent({
           path: ctx.root.$route.path,
           query: { theme: newVal }
         });
+      },
+      { lazy: true }
+    );
+
+    watch(
+      () => state.activeLang,
+      newLang => {
+        setLanguage(newLang);
+        ctx.emit("lang-change");
       },
       { lazy: true }
     );
@@ -124,32 +145,27 @@ export default defineComponent({
 
       & > * {
         margin: 0 multiply(al-cv-base-size, 0.5);
-        padding: 0px multiply(al-cv-base-size, 0.25);
+        border: 2px solid var(--al-cv-color-on-primary);
+        border-radius: multiply(al-cv-base-size, 0.25);
+        background: none;
       }
 
-      .theme-change {
-        border: 1px solid var(--al-cv-color-on-primary);
-        border-radius: multiply(al-cv-base-size, 0.25);
+      // Cancel all "select" styling
+      select {
+        padding: multiply(al-cv-base-size, 0.25);
+        background: var(--al-cv-color-primary);
+        color: var(--al-cv-color-on-primary);
+        border: 0;
 
-        select {
-          padding: multiply(al-cv-base-size, 0.25);
-          background: var(--al-cv-color-primary);
-          color: var(--al-cv-color-on-primary);
-          border: 0;
-
-          &:hover {
-            cursor: pointer;
-          }
+        &:hover {
+          cursor: pointer;
         }
       }
     }
   }
 
   .header-btn {
-    background: none;
-    border-radius: multiply(al-cv-base-size, 0.25);
     padding: multiply(al-cv-base-size, 0.25) multiply(al-cv-base-size, 0.75);
-    border: 2px solid var(--al-cv-color-on-primary);
     color: var(--al-cv-color-on-primary);
 
     &:hover {

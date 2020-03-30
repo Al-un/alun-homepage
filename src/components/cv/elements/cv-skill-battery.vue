@@ -83,7 +83,7 @@ $battery-bg-color: var(--al-cv-color-skill-battery-bg);
   }
 }
 
-.al-cv-skill {
+.al-cv-skills {
   // -- Skill battery level --
   // the small tip on the right is all depending on al-cv-font-size-m
   .skill-level-battery {

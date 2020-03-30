@@ -6,6 +6,7 @@
       <div
         :key="`${skillIdx}-name`"
         :class="{ 'interested-skill': skill.interest >= state.interest.limit }"
+        class="skill-name"
       >{{ skill.name | i18n }}</div>
 
       <cv-skill-battery
@@ -50,7 +51,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.al-cv-skill {
+.al-cv-skills {
   line-height: multiply(al-cv-font-size-m, 1.25);
 
   .skills-set {
@@ -67,17 +68,22 @@ export default defineComponent({
       transition: color 0.2s;
     }
 
-    // -- Skill battery level --
+    // -- Skill battery / bullet level --
     // the small tip on the right is all depending on al-cv-font-size-m
+    // .skill-level-battery {
+    //   display: block;
+    // }
+
+    // .skill-level-bullet {
+    //   display: none;
+    // }
+
     .skill-level-battery {
-      // display: none;
-      display: block;
+      display: none;
     }
 
-    // --- Skill bullet style --
     .skill-level-bullet {
-      // display: flex;
-      display: none;
+      display: flex;
     }
 
     // --- Interest ---
@@ -96,22 +102,20 @@ export default defineComponent({
 }
 
 @media print {
-  .al-cv-skill {
+  .al-cv-skills {
     .skills-set {
-      width: 25%;
-      grid-template-columns: 3fr 1fr;
+      grid-template-columns: 2fr 1fr;
 
-      &:first-of-type {
-        padding-left: 0;
+      .skill-name {
+        font-size: multiply(al-cv-font-size, 0.8);
       }
+      // .interested-skill {
+      //   color: var(--al-cv-color-secondary-dark);
+      //   font-family: var(--al-cv-font-family-title);
+      // }
 
       .skill-level-battery {
         display: none;
-      }
-
-      .interested-skill {
-        // color: var(--al-cv-color-secondary-dark);
-        // font-family: var(--al-cv-font-family-title);
       }
 
       .skill-level-bullet {

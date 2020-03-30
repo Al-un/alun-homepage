@@ -4,6 +4,7 @@ import {
   Languages,
   DEFAULT_LANGUAGE
 } from "@/models";
+import { getLanguage } from './i18n';
 
 /**
  * Local type for convenience only
@@ -15,7 +16,7 @@ type TranslationInput =
   | TranslatedParagraphs;
 
 export const translate = (input: TranslationInput): string | string[] => {
-  const language: Languages = DEFAULT_LANGUAGE;
+  const language: Languages = getLanguage() as Languages;
 
   // Just in case...
   if (input === undefined) {

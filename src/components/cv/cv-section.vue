@@ -5,8 +5,9 @@
       <span>{{ section.title | i18n }}</span>
     </h3>
     <base-text
-      v-if="section && section.description"
-      :content="section.description"
+      v-for="(desc, idx) in state.descs"
+      :key="idx"
+      :content="desc"
       class="section-description"
     />
     <slot></slot>
@@ -14,9 +15,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { defineComponent, reactive, computed } from "@vue/composition-api";
 
-import { CvSection } from "@/models";
+import { CvSection, Languages } from "@/models";
+import { getLanguage } from "../../utils/i18n";
 
 interface Props {
   section?: CvSection;
@@ -30,8 +32,20 @@ export default defineComponent({
     titleMdIcon: { type: String, default: undefined }
   },
 
-  setup() {
-    return {};
+  setup(props: Props) {
+    const state = reactive({
+      descs: computed(() => {
+        if (props.section && props.section.description) {
+          const lang = getLanguage();
+          return props.section.description[lang as Languages];
+        }
+        return [];
+      })
+    });
+
+    return {
+      state
+    };
   }
 });
 </script>

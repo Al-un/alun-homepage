@@ -22,7 +22,7 @@
     </header>
 
     <main>
-      <base-text :content="experience.description" />
+      <base-text v-for="(desc, idx) in translated.descs" :key="idx" :content="desc" />
     </main>
 
     <footer>
@@ -41,8 +41,9 @@
 <script lang="ts">
 import { defineComponent, computed, reactive } from "@vue/composition-api";
 
-import { CvExperience } from "@/models";
+import { CvExperience, Languages } from "@/models";
 import CvLink from "@/components/cv/elements/cv-link.vue";
+import { getLanguage } from "../../../utils/i18n";
 
 interface Props {
   experience: CvExperience;
@@ -57,16 +58,27 @@ export default defineComponent({
 
   setup(props: Props) {
     const translated = reactive({
-      skills: computed(() =>
-        props.experience.skills
-          ? props.experience.skills.en.join(", ")
-          : undefined
-      ),
-      roles: computed(() =>
-        props.experience.roles
-          ? props.experience.roles.en.join(", ")
-          : undefined
-      )
+      skills: computed(() => {
+        const lang = getLanguage();
+
+        return props.experience.skills
+          ? props.experience.skills[lang as Languages].join(", ")
+          : undefined;
+      }),
+      roles: computed(() => {
+        const lang = getLanguage();
+
+        return props.experience.roles
+          ? props.experience.roles[lang as Languages].join(", ")
+          : undefined;
+      }),
+      descs: computed(() => {
+        const lang = getLanguage();
+
+        return props.experience.roles
+          ? props.experience.description[lang as Languages]
+          : undefined;
+      })
     });
 
     return { translated };

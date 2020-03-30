@@ -1,6 +1,6 @@
 <template>
   <div class="al-cv">
-    <cv-page-header />
+    <cv-page-header @lang-change="onLangChange" />
 
     <main class="al-cv-page">
       <cv-intro-section :profile="profile" />
@@ -93,7 +93,12 @@ export default defineComponent({
       }
     });
 
-    return { profile };
+    const onLangChange = () => {
+      console.log(">>>>>>>>>>>>>>>")
+      ctx.root.$forceUpdate();
+    };
+
+    return { profile, onLangChange };
   }
 });
 </script>

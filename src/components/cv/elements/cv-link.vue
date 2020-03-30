@@ -86,7 +86,7 @@ export default defineComponent({
   .al-link {
     .text {
       display: inline-block;
-      text-decoration: underline var(--al-cv-color-primary);
+      text-decoration: underline dotted var(--al-cv-color-primary);
     }
 
     .open-in-new {

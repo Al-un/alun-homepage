@@ -1,8 +1,5 @@
 <template>
-  <cv-section :section="skills" class="al-cv-skill" title-md-icon="code">
-    <p class="intro on-screen-only">{{ "cv.skills.intro.web" | i18n }}</p>
-    <p class="intro on-print-only">{{ "cv.skills.intro.print" | i18n }}</p>
-
+  <cv-section :section="skills" class="al-cv-skills" title-md-icon="code">
     <div class="skills-list">
       <cv-skill-group
         v-for="(skillGroup, grpIdx) in skills.content"
@@ -38,28 +35,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.al-cv-skill {
-  .intro {
-    margin-bottom: multiply(al-cv-base-size, 0.25);
-  }
-
+.al-cv-skills {
   .skills-list {
     display: grid;
-    gap: multiply(al-cv-base-size, 1);
+    gap: multiply(al-cv-base-size, 2);
     grid-template-columns: 1fr;
-    align-items: start;
-  }
-
-  .on-screen-only {
-    display: block;
-  }
-  .on-print-only {
-    display: none;
+    align-items: baseline;
   }
 }
 
 @include for-tablet-portrait-up {
-  .al-cv-skill {
+  .al-cv-skills {
     .skills-list {
       grid-template-columns: 1fr 1fr;
     }
@@ -67,7 +53,7 @@ export default defineComponent({
 }
 
 @include for-tablet-landscape-up {
-  .al-cv-skill {
+  .al-cv-skills {
     .skills-list {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
@@ -75,16 +61,9 @@ export default defineComponent({
 }
 
 @media print {
-  .al-cv-skill {
+  .al-cv-skills {
     .skills-list {
       grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-
-    .on-screen-only {
-      display: none;
-    }
-    .on-print-only {
-      display: block;
     }
   }
 }

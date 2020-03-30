@@ -8,7 +8,7 @@ export const CV_THEMES_WEB: { [key: string]: { [key: string]: string } } = {
   [CV_THEME_NAMES[0]]: {
     "--al-cv-color-primary": "#26A69A", // Teal 400
     "--al-cv-color-primary-dark": "#00796B", // Teal 700
-    "--al-cv-color-secondary": "#E91E63", // Pink 500
+    "--al-cv-color-secondary": "#EC407A", // Pink 400
     "--al-cv-color-secondary-dark": "#C2185B", // Pink 700
     "--al-cv-color-body-bg": "#263238", // Blue-gray 900
     "--al-cv-color-surface-bg": "#FFFFFF",
@@ -81,6 +81,8 @@ export const CV_THEMES_WEB: { [key: string]: { [key: string]: string } } = {
  */
 export const CV_THEMES_PRINT: { [key: string]: { [key: string]: string } } = {
   [CV_THEME_NAMES[0]]: {
+    "--al-cv-color-primary": "#00897B", // Teal 600
+    "--al-cv-color-primary-dark": "#00695C", // Teal 800
     "--al-cv-base-size": "0.8rem",
     "--al-cv-font-size-m": "10pt"
   },
