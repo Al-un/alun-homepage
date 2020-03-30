@@ -1,6 +1,6 @@
 <template>
   <div class="al-cv">
-    <cv-page-header @lang-change="onLangChange" />
+    <cv-page-header />
 
     <main class="al-cv-page">
       <cv-intro-section :profile="profile" />
@@ -52,6 +52,7 @@ import {
   CV_THEME_DEFAULT,
   CV_THEME_NAMES
 } from "@/utils/cv";
+import { setLanguage } from "../utils/i18n";
 
 export default defineComponent({
   name: "Cv",
@@ -72,6 +73,7 @@ export default defineComponent({
   setup(props: {}, ctx: SetupContext) {
     const profile = computed(() => MyCV);
 
+    // [TODO] move param getter to utils
     onMounted(() => {
       // Get parameter
       const themeParam = ctx.root.$route.query["theme"];
@@ -91,14 +93,23 @@ export default defineComponent({
         console.debug(`[CV] Loading default theme`);
         loadTheme(CV_THEMES_WEB[CV_THEME_DEFAULT]);
       }
+
+      // Lang parameter
+      const langParam = ctx.root.$route.query["lang"];
+      let requestedLang = "";
+      if (typeof langParam === "string") {
+        requestedLang = langParam;
+      }
+      if (Array.isArray(langParam)) {
+        const firstParam = langParam[0];
+        requestedLang = firstParam !== null ? firstParam : "";
+      }
+      if (requestedLang) {
+        setLanguage(requestedLang);
+      }
     });
 
-    const onLangChange = () => {
-      console.log(">>>>>>>>>>>>>>>")
-      ctx.root.$forceUpdate();
-    };
-
-    return { profile, onLangChange };
+    return { profile };
   }
 });
 </script>

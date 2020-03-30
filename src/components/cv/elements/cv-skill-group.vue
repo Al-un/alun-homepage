@@ -70,21 +70,19 @@ export default defineComponent({
 
     // -- Skill battery / bullet level --
     // the small tip on the right is all depending on al-cv-font-size-m
-    // .skill-level-battery {
-    //   display: block;
-    // }
-
-    // .skill-level-bullet {
-    //   display: none;
-    // }
-
     .skill-level-battery {
+      display: block;
+    }
+    .skill-level-bullet {
       display: none;
     }
 
-    .skill-level-bullet {
-      display: flex;
-    }
+    // .skill-level-battery {
+    //   display: none;
+    // }
+    // .skill-level-bullet {
+    //   display: flex;
+    // }
 
     // --- Interest ---
     .material-icons {
