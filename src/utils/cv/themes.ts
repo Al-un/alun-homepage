@@ -84,6 +84,12 @@ export const CV_THEMES_PRINT: { [key: string]: { [key: string]: string } } = {
     "--al-cv-color-primary": "#00897B", // Teal 600
     "--al-cv-color-primary-dark": "#00695C", // Teal 800
     "--al-cv-color-secondary": "#E91E63", // Pink 500
+    "--al-cv-color-body-bg": "#FFFFFF",
+    "--al-cv-color-surface-bg": "#FFFFFF",
+    "--al-cv-color-on-surface": "#212121", // Gray 900
+    "--al-cv-color-on-surface-disabled": "#616161", // Gray 700
+    "--al-cv-color-on-primary": "#ECEFF1", // Blue-gray 50
+    "--al-cv-color-on-secondary": "#000000",
     "--al-cv-base-size": "0.8rem",
     "--al-cv-font-size-m": "9pt"
   },

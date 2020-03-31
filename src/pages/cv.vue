@@ -181,6 +181,8 @@ export default defineComponent({
 
 @media print {
   .al-cv {
+    font-weight: 400;
+
     .al-cv-page-header,
     .al-cv-page-footer {
       display: none;
@@ -189,8 +191,17 @@ export default defineComponent({
 
     .al-cv-page {
       margin: 0;
+      padding: 0;
       width: 100%;
       max-width: 100%;
+
+      // .al-cv-misc {
+      //   .al-cv-section {
+      //     .section-title {
+      //       margin-bottom: multiply(al-cv-base-size, 0.5);
+      //     }
+      //   }
+      // }
     }
   }
 }

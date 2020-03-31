@@ -45,13 +45,13 @@ $bullet-enabled-color: var(--al-cv-color-secondary);
     .bullet {
       flex-shrink: 0;
       flex-grow: 0;
-      border-radius: 50%;
-      width: multiply(al-cv-font-size-m, 0.7);
-      height: multiply(al-cv-font-size-m, 0.7);
-      border: multiply(al-cv-font-size-m, 0.4) solid $bullet-disabled-color;
+      border-radius: 100%;
+      width: multiply(al-cv-font-size-m, 0.8);
+      height: multiply(al-cv-font-size-m, 0.8);
+      border: multiply(al-cv-font-size-m, 0.42) solid $bullet-disabled-color;
 
       &.enabled {
-        border: multiply(al-cv-font-size-m, 0.4) solid $bullet-enabled-color;
+        border-color: $bullet-enabled-color;
       }
     }
 

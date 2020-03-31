@@ -15,18 +15,21 @@ export default Vue.extend<{}>({
 <style lang="scss">
 .al-cv-separator {
   display: none;
+  border-bottom: 1px solid var(--al-cv-color-primary);
 
-  @include print-and-tablet {
+  @include for-tablet-portrait-up {
     display: block;
     margin: multiply(al-cv-base-size, 0.5) multiply(al-cv-base-size, 1);
-    border-bottom: 1px solid var(--al-cv-color-primary);
   }
 }
 
 @media print {
   .al-cv-separator {
-    // Horizontal margin matches horizontal padding of .al-cv-section
-    margin: multiply(al-cv-base-size, 0.5) multiply(al-cv-base-size, 0.5);
+    display: block;
+    // display: none;
+
+    // // Horizontal margin matches horizontal padding of .al-cv-section
+    margin: multiply(al-cv-base-size, 0.25) multiply(al-cv-base-size, 0.5);
   }
 }
 </style>

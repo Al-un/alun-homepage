@@ -1,20 +1,14 @@
 <template>
   <div class="contact">
-    <cv-link
-      :url="`mailto:${info.email}?subject=Contact from CV`"
-      md-icon="email"
-      >{{ info.email }}</cv-link
-    >
+    <cv-link :url="`mailto:${info.email}?subject=Contact from CV`" md-icon="email">{{ info.email }}</cv-link>
 
-    <cv-link :url="`tel:${info.phone}`" md-icon="local_phone">{{
+    <cv-link :url="`tel:${info.phone}`" md-icon="local_phone">
+      {{
       info.phone
-    }}</cv-link>
+      }}
+    </cv-link>
 
-    <cv-link
-      url="https://goo.gl/maps/1W5gGPXQ8UKkehrv6"
-      md-icon="location_on"
-      >{{ info.location }}</cv-link
-    >
+    <cv-link url="https://goo.gl/maps/1W5gGPXQ8UKkehrv6" md-icon="location_on">{{ info.location }}</cv-link>
   </div>
 </template>
 
@@ -67,6 +61,13 @@ export default defineComponent({
   .contact {
     flex-direction: column;
     align-items: flex-end;
+    // line-height: multiply(al-cv-font-size-m, 1.2);
+
+    .al-link {
+      .material-icons {
+        font-size: multiply(al-cv-font-size-m, 1.4);
+      }
+    }
   }
 }
 </style>

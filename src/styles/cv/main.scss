@@ -5,7 +5,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/CSS/@page
 // https://www.smashingmagazine.com/2015/01/designing-for-print-with-css/
 @page {
-  margin: 6mm 6mm;
+  margin: 8mm 1cm;
   size: A4 portrait;
 
   @top-left-corner {

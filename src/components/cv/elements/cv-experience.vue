@@ -116,6 +116,7 @@ export default defineComponent({
     width: 100%;
 
     &::before {
+      margin-right: multiply(al-cv-base-size, 0.25);
       content: "@";
     }
 
@@ -194,12 +195,21 @@ export default defineComponent({
 
 @media print {
   .al-cv-experience {
+    .exp-title {
+      font-weight: 700;
+    }
+
+    // .exp-date {
+    //   color: var(--al-cv-color-secondary);
+    // }
+
     main {
       // margin: multiply(al-cv-base-size, 0.25) 0;
       margin: 0;
     }
 
     footer {
+      border-left: 2px solid var(--al-cv-color-secondary);
       line-height: multiply(al-cv-font-size-m, 1.5);
     }
 
@@ -216,7 +226,7 @@ export default defineComponent({
   }
 
   .al-cv-experience + .al-cv-experience {
-    margin-top: multiply(al-cv-base-size, 1);
+    margin-top: multiply(al-cv-base-size, 0.75);
   }
 }
 </style>

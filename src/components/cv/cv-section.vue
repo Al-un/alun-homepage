@@ -63,7 +63,7 @@ export default defineComponent({
     transition: color 0.2s;
 
     .material-icons {
-      font-size: multiply(al-cv-font-size-m, 1.55);
+      font-size: multiply(al-cv-font-size-m, 1.5);
       margin-right: multiply(al-cv-base-size, 0.5);
       vertical-align: bottom;
     }
@@ -80,6 +80,10 @@ export default defineComponent({
 @media print {
   .al-cv-section {
     padding: multiply(al-cv-base-size, 0.5);
+
+    .section-title {
+      margin-bottom: multiply(al-cv-base-size, 0.75);
+    }
   }
 }
 </style>
