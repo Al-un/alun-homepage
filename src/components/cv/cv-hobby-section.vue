@@ -1,16 +1,10 @@
 <template>
-  <cv-section
-    :section="hobbies"
-    class="al-cv-hobbies"
-    title-md-icon="directions_bike"
-  >
+  <cv-section :section="hobbies" class="al-cv-hobbies" title-md-icon="directions_bike">
     <span
       v-for="(hobby, idx) in hobbies.content"
       :key="`cv-hobby-${idx}`"
       class="al-cv-hobby"
-    >
-      {{ hobby.name | i18n }}
-    </span>
+    >{{ hobby.name | i18n }}</span>
   </cv-section>
 </template>
 
@@ -49,6 +43,18 @@ export default defineComponent({
 
     &:last-of-type {
       border-right: 2px solid var(--al-cv-color-primary);
+    }
+  }
+}
+
+@media print {
+  .al-cv-hobbies {
+    .al-cv-hobby {
+      border-left: 1px solid var(--al-cv-color-primary);
+
+      &:last-of-type {
+        border-right: 1px solid var(--al-cv-color-primary);
+      }
     }
   }
 }

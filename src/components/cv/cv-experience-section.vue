@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
-import CvExperience from "./elements/cv-experience-v2.vue";
+import CvExperience from "./elements/cv-experience.vue";
 import CvSection from "./cv-section.vue";
 import { CvExperienceSection } from "@/models";
 

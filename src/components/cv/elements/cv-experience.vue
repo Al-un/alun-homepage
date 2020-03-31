@@ -1,37 +1,39 @@
 <template>
   <article class="al-cv-experience">
-    <p>DEPRECATED</p>
     <header>
-      <h2 class="exp-title">{{ experience.title | i18n }}</h2>
-      <span class="exp-date">
-        {{ experience.date.start | i18n }} -
-        {{ experience.date.end | i18n }}
-      </span>
+      <div>
+        <h2 class="exp-title">{{ experience.title | i18n }}</h2>
+        <span class="exp-org">
+          <cv-link
+            v-if="experience.organisation.url"
+            :url="experience.organisation.url"
+          >{{ experience.organisation.name }}</cv-link>
+          <span v-else>{{ experience.organisation.name }}</span>
+        </span>
+      </div>
+
+      <div>
+        <span class="exp-location">{{ experience.location | i18n }}</span>
+        <span class="exp-date">
+          {{ experience.date.start | i18n }} -
+          {{ experience.date.end | i18n }}
+        </span>
+      </div>
     </header>
 
-    <div>
-      <span class="exp-org">
-        <cv-link
-          v-if="experience.organisation.url"
-          :url="experience.organisation.url"
-          >{{ experience.organisation.name }}</cv-link
-        >
-        <span v-else>{{ experience.organisation.name }}</span>
-      </span>
-      <span class="exp-location">{{ experience.location | i18n }}</span>
-    </div>
-
     <main>
-      <base-text :content="experience.description" />
+      <base-text v-for="(desc, idx) in translated.descs" :key="idx" :content="desc" />
     </main>
 
     <footer>
-      <div v-if="translated.roles" class="roles-set">
-        <span>Roles</span><span>{{ translated.roles }}</span>
-      </div>
-      <div v-if="translated.skills" class="skills-set">
-        <span>Tech</span><span>{{ translated.skills }}</span>
-      </div>
+      <template v-if="translated.roles">
+        <span class="footer-key">Roles</span>
+        <span class="footer-value">{{ translated.roles }}</span>
+      </template>
+      <template v-if="translated.skills">
+        <span class="footer-key">Tech</span>
+        <span class="footer-value">{{ translated.skills }}</span>
+      </template>
     </footer>
   </article>
 </template>
@@ -39,8 +41,9 @@
 <script lang="ts">
 import { defineComponent, computed, reactive } from "@vue/composition-api";
 
-import { CvExperience } from "@/models";
+import { CvExperience, Languages } from "@/models";
 import CvLink from "@/components/cv/elements/cv-link.vue";
+import { getLanguage } from "../../../utils/i18n";
 
 interface Props {
   experience: CvExperience;
@@ -55,16 +58,27 @@ export default defineComponent({
 
   setup(props: Props) {
     const translated = reactive({
-      skills: computed(() =>
-        props.experience.skills
-          ? props.experience.skills.en.join(", ")
-          : undefined
-      ),
-      roles: computed(() =>
-        props.experience.roles
-          ? props.experience.roles.en.join(", ")
-          : undefined
-      )
+      skills: computed(() => {
+        const lang = getLanguage();
+
+        return props.experience.skills
+          ? props.experience.skills[lang as Languages].join(", ")
+          : undefined;
+      }),
+      roles: computed(() => {
+        const lang = getLanguage();
+
+        return props.experience.roles
+          ? props.experience.roles[lang as Languages].join(", ")
+          : undefined;
+      }),
+      descs: computed(() => {
+        const lang = getLanguage();
+
+        return props.experience.roles
+          ? props.experience.description[lang as Languages]
+          : undefined;
+      })
     });
 
     return { translated };
@@ -75,20 +89,22 @@ export default defineComponent({
 <style lang="scss">
 .al-cv-experience {
   header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-bottom: multiply(al-cv-base-size, 0.25);
+
+    & > :last-child {
+      width: 100%;
+    }
   }
 
   .exp-title {
     display: inline-block;
     color: var(--al-cv-color-primary);
-    font-size: multiply(al-cv-font-size-m, 1.25);
-
-    &::after {
-      margin: 0px multiply(al-cv-base-size, 0.25);
-      font-weight: normal;
-      color: var(--al-cv-color-on-surface);
-      content: "|";
-    }
+    font-weight: bold;
+    transition: color 0.2s;
   }
 
   h3 {
@@ -96,16 +112,28 @@ export default defineComponent({
   }
 
   .exp-org {
-    // margin-right: multiply(al-cv-base-size, 0.5);
+    display: inline-block;
+    width: 100%;
 
-    &::after {
-      content: ", ";
+    &::before {
+      content: "@";
+    }
+
+    @include print-and-tablet {
+      width: auto;
+      margin-left: multiply(al-cv-base-size, 0.5);
     }
   }
 
-  // .exp-location {
-  //   font-style: italic;
-  // }
+  .exp-location {
+    border-right: 1px solid var(--al-cv-color-primary);
+    padding-right: multiply(al-cv-base-size, 0.5);
+    margin-right: multiply(al-cv-base-size, 0.25);
+  }
+
+  .exp-date {
+    transition: color 0.2s;
+  }
 
   main {
     margin: multiply(al-cv-base-size, 0.5) 0;
@@ -113,23 +141,39 @@ export default defineComponent({
   }
 
   footer {
+    display: grid;
+    gap: 0 multiply(al-cv-base-size, 0.5);
+    grid-template-columns: max-content auto;
     margin-top: multiply(al-cv-base-size, 0.5);
     border-left: 3px solid var(--al-cv-color-secondary);
-    padding-left: multiply(al-cv-base-size, 0.5);
+    padding-left: multiply(al-cv-base-size, 0.75);
     font-style: italic;
+    transition: border-left 0.2s;
 
     @include print-and-tablet {
-      padding-left: multiply(al-cv-base-size, 1);
+      padding-left: multiply(al-cv-base-size, 1.5);
     }
 
-    .roles-set,
-    .skills-set {
-      :first-child {
-        &::after {
-          color: var(--al-cv-color-on-surface);
-          content: " : ";
-        }
+    .footer-key {
+      &::after {
+        color: var(--al-cv-color-on-surface);
+        content: " : ";
       }
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .exp-title {
+      color: var(--al-cv-color-primary-dark);
+    }
+
+    .exp-date {
+      color: var(--al-cv-color-secondary-dark);
+    }
+
+    footer {
+      border-left: 3px solid var(--al-cv-color-secondary-dark);
     }
   }
 }
@@ -138,19 +182,41 @@ export default defineComponent({
   margin-top: multiply(al-cv-base-size, 2);
 }
 
-@media print {
+@include print-and-tablet {
   .al-cv-experience {
-    .exp-title {
-      font-size: multiply(al-cv-font-size-m, 1);
+    header {
+      & > :last-child {
+        width: auto;
+      }
     }
   }
 }
 
-@include for-phone-only {
+@media print {
   .al-cv-experience {
-    .exp-title {
-      font-size: multiply(al-cv-font-size-m, 1);
+    main {
+      // margin: multiply(al-cv-base-size, 0.25) 0;
+      margin: 0;
     }
+
+    footer {
+      line-height: multiply(al-cv-font-size-m, 1.5);
+    }
+
+    &:hover,
+    &:focus {
+      .exp-title {
+        color: var(--al-cv-color-primary);
+      }
+
+      footer {
+        border-left: 3px solid var(--al-cv-color-secondary);
+      }
+    }
+  }
+
+  .al-cv-experience + .al-cv-experience {
+    margin-top: multiply(al-cv-base-size, 1);
   }
 }
 </style>

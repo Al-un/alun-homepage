@@ -7,9 +7,11 @@
 
       <cv-separator />
 
-      <cv-section :section="profile.objective" title-md-icon="flight_takeoff" />
+      <!-- <cv-section :section="profile.objective" title-md-icon="flight_takeoff" /> -->
       <cv-section :section="profile.aboutMe" title-md-icon="fingerprint" />
+
       <cv-skill-section :skills="profile.skills" />
+
       <cv-experience-section :experiences="profile.experiences" />
 
       <cv-separator />
@@ -182,6 +184,7 @@ export default defineComponent({
     .al-cv-page-header,
     .al-cv-page-footer {
       display: none;
+      height: 0;
     }
 
     .al-cv-page {

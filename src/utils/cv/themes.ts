@@ -83,8 +83,9 @@ export const CV_THEMES_PRINT: { [key: string]: { [key: string]: string } } = {
   [CV_THEME_NAMES[0]]: {
     "--al-cv-color-primary": "#00897B", // Teal 600
     "--al-cv-color-primary-dark": "#00695C", // Teal 800
+    "--al-cv-color-secondary": "#E91E63", // Pink 500
     "--al-cv-base-size": "0.8rem",
-    "--al-cv-font-size-m": "10pt"
+    "--al-cv-font-size-m": "9pt"
   },
   [CV_THEME_NAMES[1]]: {
     "--al-cv-base-size": "0.8rem",
