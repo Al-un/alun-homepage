@@ -48,12 +48,8 @@ import CvSeparator from "@/components/cv/elements/cv-separator.vue";
 import CvSkillSection from "@/components/cv/cv-skill-section.vue";
 
 import { MyCV } from "@/data/cv";
-import {
-  CV_THEMES_WEB,
-  loadTheme,
-  CV_THEME_DEFAULT,
-  CV_THEME_NAMES
-} from "@/utils/cv";
+import { loadTheme } from "@/utils/cv";
+import { CV_THEMES_WEB, CV_THEME_DEFAULT, CV_THEME_NAMES } from "@/data/cv";
 import { setLanguage } from "../utils/i18n";
 
 export default defineComponent({

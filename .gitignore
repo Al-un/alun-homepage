@@ -24,4 +24,4 @@ yarn-error.log*
 notes.md
 
 #Temp
-src/data/cv/
+src/data/cv/profile.ts
