@@ -24,11 +24,16 @@
               :key="idx"
               :value="t"
               :selected="state.activeTheme === t"
-            >{{ t }}</option>
+              >{{ t }}</option
+            >
           </select>
         </div>
 
-        <button v-if="state.hasPrint" class="header-btn print-btn" @click="print">
+        <button
+          v-if="state.hasPrint"
+          class="header-btn print-btn"
+          @click="print"
+        >
           <span class="material-icons">print</span>
           <span class="text">{{ "cv.header.print" | i18n }}</span>
         </button>
@@ -47,13 +52,9 @@ import {
   onMounted
 } from "@vue/composition-api";
 
-import {
-  CV_THEMES_WEB,
-  CV_THEME_DEFAULT,
-  loadTheme,
-  CV_THEMES_PRINT
-} from "@/utils/cv";
-import { setLanguage } from "../../utils/i18n";
+import { loadTheme } from "@/utils/cv";
+import { CV_THEMES_WEB, CV_THEME_DEFAULT, CV_THEMES_PRINT } from "@/data/cv";
+import { setLanguage } from "@/utils/i18n";
 
 export default defineComponent({
   name: "cv-page-header",

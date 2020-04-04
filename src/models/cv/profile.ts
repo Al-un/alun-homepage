@@ -106,9 +106,9 @@ export interface CvExperience {
     end: TranslatedExpression;
   };
   location: TranslatedExpression;
-  description: TranslatedParagraphs;
-  roles?: TranslatedParagraphs;
-  skills?: TranslatedParagraphs;
+  description: TranslatedExpression;
+  roles?: TranslatedExpression;
+  skills?: TranslatedExpression;
 }
 
 // ---------- Languages -------------------------------------------------------

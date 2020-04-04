@@ -2,12 +2,15 @@
   <article class="al-cv-experience">
     <header>
       <div>
-        <h2 class="exp-title">{{ experience.title | i18n }}</h2>
+        <h2 class="exp-title">
+          <b>{{ experience.title | i18n }}</b>
+        </h2>
         <span class="exp-org">
           <cv-link
             v-if="experience.organisation.url"
             :url="experience.organisation.url"
-          >{{ experience.organisation.name }}</cv-link>
+            >{{ experience.organisation.name }}</cv-link
+          >
           <span v-else>{{ experience.organisation.name }}</span>
         </span>
       </div>
@@ -22,28 +25,27 @@
     </header>
 
     <main>
-      <base-text v-for="(desc, idx) in translated.descs" :key="idx" :content="desc" />
+      <base-text :content="experience.description | i18n" />
     </main>
 
     <footer>
-      <template v-if="translated.roles">
+      <template v-if="experience.roles">
         <span class="footer-key">Roles</span>
-        <span class="footer-value">{{ translated.roles }}</span>
+        <span class="footer-value">{{ experience.roles | i18n }}</span>
       </template>
-      <template v-if="translated.skills">
+      <template v-if="experience.skills">
         <span class="footer-key">Tech</span>
-        <span class="footer-value">{{ translated.skills }}</span>
+        <span class="footer-value">{{ experience.skills | i18n }}</span>
       </template>
     </footer>
   </article>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, reactive } from "@vue/composition-api";
+import { defineComponent } from "@vue/composition-api";
 
-import { CvExperience, Languages } from "@/models";
+import { CvExperience } from "@/models";
 import CvLink from "@/components/cv/elements/cv-link.vue";
-import { getLanguage } from "../../../utils/i18n";
 
 interface Props {
   experience: CvExperience;
@@ -56,32 +58,8 @@ export default defineComponent({
     experience: { type: Object, required: true }
   },
 
-  setup(props: Props) {
-    const translated = reactive({
-      skills: computed(() => {
-        const lang = getLanguage();
-
-        return props.experience.skills
-          ? props.experience.skills[lang as Languages].join(", ")
-          : undefined;
-      }),
-      roles: computed(() => {
-        const lang = getLanguage();
-
-        return props.experience.roles
-          ? props.experience.roles[lang as Languages].join(", ")
-          : undefined;
-      }),
-      descs: computed(() => {
-        const lang = getLanguage();
-
-        return props.experience.roles
-          ? props.experience.description[lang as Languages]
-          : undefined;
-      })
-    });
-
-    return { translated };
+  setup() {
+    return {};
   }
 });
 </script>
@@ -137,7 +115,7 @@ export default defineComponent({
   }
 
   main {
-    margin: multiply(al-cv-base-size, 0.5) 0;
+    margin: multiply(al-cv-base-size, 0.25) 0;
     color: var(--al-cv-color-on-surface-disabled);
   }
 
@@ -158,7 +136,7 @@ export default defineComponent({
     .footer-key {
       &::after {
         color: var(--al-cv-color-on-surface);
-        content: " : ";
+        content: ": ";
       }
     }
   }
@@ -195,9 +173,6 @@ export default defineComponent({
 
 @media print {
   .al-cv-experience {
-    .exp-title {
-      font-weight: 700;
-    }
 
     // .exp-date {
     //   color: var(--al-cv-color-secondary);
