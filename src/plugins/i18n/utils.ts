@@ -3,7 +3,7 @@ import { I18nJsonDictionary, I18nLangLoader, I18nDictionary } from "./types";
 /**
  * Default supported languages are only "English"
  */
-export const DFLT_LANGS: string[] = ["en"];
+export const DFLT_LANGS: string[] = ["en", "fr", "jp"];
 /**
  * Default language loader loads the first default language
  */

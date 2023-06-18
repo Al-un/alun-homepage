@@ -4,15 +4,22 @@
       <div></div>
 
       <div class="actions">
-        <!-- <div class="lang-change">
+        <div class="lang-change">
           <span class="material-icons">invert_colors</span>
           <span class="text">{{ "cv.header.lang" | i18n }}:</span>
 
           <select v-model="state.activeLang">
-            <option value="en" :selected="state.activeLang === 'en'">English</option>
-            <option value="fr" :selected="state.activeLang === 'fr'">French</option>
+            <option value="en" :selected="state.activeLang === 'en'">
+              English
+            </option>
+            <option value="fr" :selected="state.activeLang === 'fr'">
+              Français
+            </option>
+            <option value="jp" :selected="state.activeLang === 'jp'">
+              日本語
+            </option>
           </select>
-        </div> -->
+        </div>
 
         <div class="theme-change">
           <span class="material-icons">invert_colors</span>
@@ -49,7 +56,7 @@ import {
   computed,
   watch,
   SetupContext,
-  onMounted
+  onMounted,
 } from "@vue/composition-api";
 
 import { loadTheme } from "@/utils/cv";
@@ -66,7 +73,7 @@ export default defineComponent({
       hasPrint: computed(() => typeof window.print === "function"),
       themes: CV_THEMES_WEB,
       activeTheme: CV_THEME_DEFAULT,
-      activeLang: localStorage.getItem("lang") || "en"
+      activeLang: localStorage.getItem("lang") || "en",
     });
 
     const print = () => {
@@ -75,14 +82,14 @@ export default defineComponent({
 
     watch(
       () => state.activeTheme,
-      newVal => {
+      (newVal) => {
         // Update theme
         const newTheme = CV_THEMES_WEB[newVal];
         loadTheme(newTheme);
         // Update URL which does not re-render the CV page!
         ctx.root.$router.push({
           path: ctx.root.$route.path,
-          query: { theme: newVal }
+          query: { theme: newVal },
         });
       },
       { lazy: true }
@@ -90,7 +97,8 @@ export default defineComponent({
 
     watch(
       () => state.activeLang,
-      newLang => {
+      (newLang) => {
+        console.log("LANG", newLang);
         setLanguage(newLang);
         ctx.emit("lang-change");
       },
@@ -108,9 +116,9 @@ export default defineComponent({
 
     return {
       state,
-      print
+      print,
     };
-  }
+  },
 });
 </script>
 
