@@ -1,0 +1,11 @@
+{
+  "cv": {
+    "header.lang": "言語",
+    "header.theme": "Theme",
+    "header.print": "プリント",
+    "social.online-cv": "オンライン履歴書",
+    "footer.code-hosted": "コードのレポジトリー：",
+    "footer.code-deployed": "ウエーブホスティング：",
+    "footer.code-tested": "Firefoxにテストしました"
+  }
+}

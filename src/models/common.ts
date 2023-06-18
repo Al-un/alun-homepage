@@ -6,7 +6,7 @@ export const DEFAULT_LANGUAGE: Languages = "en";
  * Language supported in the application. Data and UI Languages must be
  * aligned so there is no "DataLanguage" / "UiLanguage" distinction
  */
-export type Languages = "en" | "fr";
+export type Languages = "en" | "fr" | "jp";
 
 /**
  * A single expression (a sentence, a group of words or a single paragraph)
