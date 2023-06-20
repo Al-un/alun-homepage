@@ -3,16 +3,21 @@ import { Profile } from "@/models";
 export const PROFILE_DEFAULT: Profile = {
   banner: {
     title: "Al-un",
-    subtitle: { en: "Front-end developer", fr: "Développeur front-end" }
+    subtitle: {
+      en: "Front-end developer",
+      fr: "Développeur front-end",
+      jp: "",
+    },
   },
 
   about: {
     content: {
       en: [
-        'Dear dev and non-dev fellows, welcome to my personal website! I am Al-un, pronounced like in "AL-gorithm UN-defined", a front-end developer but also a Vue.js aficionado, a Gopher apprentice as well as a DevOps enthusiast.'
+        'Dear dev and non-dev fellows, welcome to my personal website! I am Al-un, pronounced like in "AL-gorithm UN-defined", a front-end developer but also a Vue.js aficionado, a Gopher apprentice as well as a DevOps enthusiast.',
       ],
-      fr: []
-    }
+      fr: [],
+      jp: [""],
+    },
   },
 
   skillsGroups: [
@@ -20,68 +25,76 @@ export const PROFILE_DEFAULT: Profile = {
       title: "Front-end",
       skills: [
         { title: "JavaScript", level: 7 },
-        { title: "Vue.js", level: 5 }
-      ]
+        { title: "Vue.js", level: 5 },
+      ],
     },
     {
       title: "Back-end",
       skills: [
         { title: "Go(lang)", level: 3 },
-        { title: "Node.js", level: 2 }
-      ]
-    }
+        { title: "Node.js", level: 2 },
+      ],
+    },
   ],
 
   hobbies: [
     {
       title: {
         en: "Drawing",
-        fr: ""
+        fr: "",
+        jp: "",
       },
       content: {
         en: [
-          "I started drawing in 2007. I mainly practice traditional drawings with either pencils or ink pens. I attempted digital drawing multiple times."
+          "I started drawing in 2007. I mainly practice traditional drawings with either pencils or ink pens. I attempted digital drawing multiple times.",
         ],
-        fr: [""]
+        fr: [""],
+        jp: [""],
       },
-      images: { src: "hobby/drawing.jpg", caption: "", alt: "" }
+      images: { src: "hobby/drawing.jpg", caption: "", alt: "" },
     },
     {
       title: {
         en: "History",
-        fr: ""
+        fr: "",
+        jp: "",
       },
       content: {
         en: [
-          "I find interesting how all histories (science, literature, social...) are linked and influence each other to create the History. A favourite topic is Europe in the XVIII<sup>th</sup> century."
+          "I find interesting how all histories (science, literature, social...) are linked and influence each other to create the History. A favourite topic is Europe in the XVIII<sup>th</sup> century.",
         ],
-        fr: [""]
+        fr: [""],
+        jp: [""],
       },
-      images: { src: "hobby/history.jpg", caption: "", alt: "" }
+      images: { src: "hobby/history.jpg", caption: "", alt: "" },
     },
     {
       title: {
         en: "Food",
-        fr: ""
+        fr: "",
+        jp: "",
       },
       content: {
         en: [
-          "Eating and drinking are the little pleasure I cannot skip. I enjoy cooking even though the output is pretty random. I got trapped into the passion of bakery during 2016. I wish I have time to get back to baking."
+          "Eating and drinking are the little pleasure I cannot skip. I enjoy cooking even though the output is pretty random. I got trapped into the passion of bakery during 2016. I wish I have time to get back to baking.",
         ],
-        fr: [""]
+        fr: [""],
+        jp: [""],
       },
-      images: { src: "hobby/food.jpg", caption: "", alt: "" }
+      images: { src: "hobby/food.jpg", caption: "", alt: "" },
     },
     {
       title: {
         en: "Manga",
-        fr: ""
+        fr: "",
+        jp: "",
       },
       content: {
         en: ["Your typical manga / anime / video game enthusiast."],
-        fr: [""]
+        fr: [""],
+        jp: [""],
       },
-      images: { src: "hobby/manga.jpg", caption: "", alt: "" }
-    }
-  ]
+      images: { src: "hobby/manga.jpg", caption: "", alt: "" },
+    },
+  ],
 };

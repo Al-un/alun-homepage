@@ -5,8 +5,9 @@
       <span>{{ section.title | i18n }}</span>
     </h3>
     <base-text
-      v-if="section && section.description"
-      :content="section.description"
+      v-for="(desc, idx) in state.descs"
+      :key="idx"
+      :content="desc"
       class="section-description"
     />
     <slot></slot>
@@ -14,9 +15,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { defineComponent, reactive, computed } from "@vue/composition-api";
 
-import { CvSection } from "@/models";
+import { CvSection, Languages } from "@/models";
+import { getLanguage } from "../../utils/i18n";
 
 interface Props {
   section?: CvSection;
@@ -30,8 +32,20 @@ export default defineComponent({
     titleMdIcon: { type: String, default: undefined }
   },
 
-  setup() {
-    return {};
+  setup(props: Props) {
+    const state = reactive({
+      descs: computed(() => {
+        if (props.section && props.section.description) {
+          const lang = getLanguage();
+          return props.section.description[lang as Languages];
+        }
+        return [];
+      })
+    });
+
+    return {
+      state
+    };
   }
 });
 </script>
@@ -41,17 +55,24 @@ export default defineComponent({
   padding: multiply(al-cv-base-size, 1);
 
   .section-title {
-    margin-bottom: multiply(al-cv-base-size, 0.5);
+    margin-bottom: multiply(al-cv-base-size, 1);
 
-    color: var(--al-cv-color-secondary-dark);
-
+    color: var(--al-cv-color-secondary);
     font-size: multiply(al-cv-font-size-m, 1);
     text-transform: uppercase;
+    transition: color 0.2s;
 
     .material-icons {
-      font-size: multiply(al-cv-font-size-m, 1.55);
+      font-size: multiply(al-cv-font-size-m, 1.5);
       margin-right: multiply(al-cv-base-size, 0.5);
       vertical-align: bottom;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    .section-title {
+      color: var(--al-cv-color-secondary-dark);
     }
   }
 }
@@ -59,6 +80,10 @@ export default defineComponent({
 @media print {
   .al-cv-section {
     padding: multiply(al-cv-base-size, 0.5);
+
+    .section-title {
+      margin-bottom: multiply(al-cv-base-size, 0.75);
+    }
   }
 }
 </style>

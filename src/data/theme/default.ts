@@ -1,38 +1,39 @@
 import { UiTheme } from "@/models";
 
 export const THEME_DEFAULT: UiTheme = {
-  name: { en: "Default", fr: "Défaut" },
+  name: { en: "Default", fr: "Défaut", jp: "-" },
   description: {
     en: ["I needed some default theme..."],
-    fr: ["J'avais besoin d'un thème..."]
+    fr: ["J'avais besoin d'un thème..."],
+    jp: [""],
   },
   localStorageKey: "DEFAULT",
 
   ui: {
     banner: {
-      image: "banner.jpg"
+      image: "banner.jpg",
     },
     about: {
-      title: { en: "About me", fr: "A propos" }
+      title: { en: "About me", fr: "A propos", jp: "-" },
     },
     skills: {
-      title: { en: "Skills", fr: "Compétences" }
+      title: { en: "Skills", fr: "Compétences", jp: "-" },
     },
     hobbies: {
-      title: { en: "Hobbies", fr: "Loisirs" }
+      title: { en: "Hobbies", fr: "Loisirs", jp: "-" },
     },
     contact: {
-      title: { en: "Contact", fr: "Contact" },
-      sender: { en: "Email", fr: "Email" },
-      subject: { en: "Subject", fr: "Sujet" },
-      body: { en: "Message", fr: "Message" },
-      submit: { en: "Send", fr: "Envoyer" }
-    }
+      title: { en: "Contact", fr: "Contact", jp: "-" },
+      sender: { en: "Email", fr: "Email", jp: "-" },
+      subject: { en: "Subject", fr: "Sujet", jp: "-" },
+      body: { en: "Message", fr: "Message", jp: "-" },
+      submit: { en: "Send", fr: "Envoyer", jp: "-" },
+    },
   },
 
   cssVariables: {
     "base-size": "16px",
-    "base-border-radius":"4px",
+    "base-border-radius": "4px",
     "color-primary": "#1E88E5",
     "color-primary-light": "#BB86FC",
     "color-primary-dark": "#3700B3",
@@ -50,6 +51,6 @@ export const THEME_DEFAULT: UiTheme = {
     "h1-size": "2rem",
     "h2-size": "1.5rem",
     "h3-size": "1.25rem",
-    "h4-size": "1.25rem"
-  }
+    "h4-size": "1.25rem",
+  },
 };

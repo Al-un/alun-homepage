@@ -1,7 +1,7 @@
 <template>
   <cv-section
     :section="experiences"
-    class="al-cv-experience"
+    class="al-cv-experiences"
     title-md-icon="work_outline"
   >
     <cv-experience
@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
-import CvExperience from "./cv-experience.vue";
+import CvExperience from "./elements/cv-experience.vue";
 import CvSection from "./cv-section.vue";
 import { CvExperienceSection } from "@/models";
 
@@ -35,8 +35,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style lang="scss">
-.al-cv-experience {
-}
-</style>

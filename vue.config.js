@@ -14,5 +14,11 @@ module.exports = {
     loaderOptions: {
       sass: { prependData: `@import "~@/styles/_core.scss";` }
     }
+  },
+  // https://cli.vuejs.org/core-plugins/pwa.html#configuration
+  pwa: {
+    name: "Al-un",
+    themeColor: "#009688",
+    workboxPluginMode: "GenerateSW"
   }
 };

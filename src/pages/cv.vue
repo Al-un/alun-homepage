@@ -5,14 +5,16 @@
     <main class="al-cv-page">
       <cv-intro-section :profile="profile" />
 
-      <base-link class="check-my-online-cv" href="https://cv.al-un.fr"
-        >Feel free to check the online version: https://cv.al-un.fr</base-link
-      >
+      <cv-separator />
 
-      <cv-section :section="profile.objective" title-md-icon="flight_takeoff" />
+      <!-- <cv-section :section="profile.objective" title-md-icon="flight_takeoff" /> -->
       <cv-section :section="profile.aboutMe" title-md-icon="fingerprint" />
+
       <cv-skill-section :skills="profile.skills" />
+
       <cv-experience-section :experiences="profile.experiences" />
+
+      <cv-separator />
 
       <aside class="al-cv-misc">
         <cv-language-section :languages="profile.languages" />
@@ -26,20 +28,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "@vue/composition-api";
+import {
+  defineComponent,
+  computed,
+  onMounted,
+  SetupContext
+} from "@vue/composition-api";
 
 import CvEducationSection from "@/components/cv/cv-education-section.vue";
 import CvExperienceSection from "@/components/cv/cv-experience-section.vue";
 import CvHobbySection from "@/components/cv/cv-hobby-section.vue";
 import CvIntroSection from "@/components/cv/cv-intro-section.vue";
 import CvLanguageSection from "@/components/cv/cv-language-section.vue";
-import CvLink from "@/components/cv/cv-link.vue";
+import CvLink from "@/components/cv/elements/cv-link.vue";
 import CvPageHeader from "@/components/cv/cv-page-header.vue";
 import CvPageFooter from "@/components/cv/cv-page-footer.vue";
 import CvSection from "@/components/cv/cv-section.vue";
+import CvSeparator from "@/components/cv/elements/cv-separator.vue";
 import CvSkillSection from "@/components/cv/cv-skill-section.vue";
-import CvSocialSection from "@/components/cv/cv-social-section.vue";
+
 import { MyCV } from "@/data/cv";
+import { loadTheme } from "@/utils/cv";
+import { CV_THEMES_WEB, CV_THEME_DEFAULT, CV_THEME_NAMES } from "@/data/cv";
+import { setLanguage } from "../utils/i18n";
 
 export default defineComponent({
   name: "Cv",
@@ -53,12 +64,49 @@ export default defineComponent({
     CvPageHeader,
     CvPageFooter,
     CvSection,
-    CvSkillSection,
-    CvSocialSection
+    CvSeparator,
+    CvSkillSection
   },
 
-  setup() {
+  setup(props: {}, ctx: SetupContext) {
     const profile = computed(() => MyCV);
+
+    // [TODO] move param getter to utils
+    onMounted(() => {
+      // Get parameter
+      const themeParam = ctx.root.$route.query["theme"];
+      let requestedTheme = "";
+      if (typeof themeParam === "string") {
+        requestedTheme = themeParam;
+      }
+      if (Array.isArray(themeParam)) {
+        const firstThemeParam = themeParam[0];
+        requestedTheme = firstThemeParam !== null ? firstThemeParam : "";
+      }
+
+      if (CV_THEME_NAMES.includes(requestedTheme)) {
+        console.debug(`[CV] Loading theme: <${requestedTheme}>`);
+        loadTheme(CV_THEMES_WEB[requestedTheme]);
+      } else {
+        console.debug(`[CV] Loading default theme`);
+        loadTheme(CV_THEMES_WEB[CV_THEME_DEFAULT]);
+      }
+
+      // Lang parameter
+      const langParam = ctx.root.$route.query["lang"];
+      let requestedLang = "";
+      if (typeof langParam === "string") {
+        requestedLang = langParam;
+      }
+      if (Array.isArray(langParam)) {
+        const firstParam = langParam[0];
+        requestedLang = firstParam !== null ? firstParam : "";
+      }
+      if (requestedLang) {
+        setLanguage(requestedLang);
+      }
+    });
+
     return { profile };
   }
 });
@@ -80,7 +128,7 @@ export default defineComponent({
   // --- Typo
   font-family: var(--al-cv-font-family-text), monospace;
   font-size: var(--al-cv-font-size-m);
-  line-height: multiply(al-cv-font-size-m, 1.5);
+  line-height: multiply(al-cv-font-size-m, 1.75);
   h1,
   h2,
   h3,
@@ -101,44 +149,22 @@ export default defineComponent({
     background-color: var(--al-cv-color-surface-bg);
     color: var(--al-cv-color-on-surface);
 
-    @include print-and-tablet {
-      border-radius: multiply(al-cv-base-size, 0.5);
-    }
-
-    .check-my-online-cv {
-      display: none;
-      padding: multiply(al-cv-base-size, 0.125);
-      border-bottom: 1px solid var(--al-cv-color-primary);
-      text-align: center;
-      font-size: multiply(al-cv-font-size-m, 0.8);
-      font-family: var(--al-cv-font-family-title);
-      color: var(--al-cv-color-primary);
-
-      @media print {
-        display: block;
-      }
-    }
-
     .al-cv-misc {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
 
-      @include print-and-tablet {
-        margin-top: multiply(al-cv-base-size, 1.5);
-        padding-top: multiply(al-cv-base-size, 1);
-        border-top: 1px solid var(--al-cv-color-primary);
-      }
-
+      // default: column mode in smartphone
       .al-cv-section {
         width: 100%;
       }
 
+      // Tablet, desktop and print: on a same row
       @include print-and-tablet {
         .al-cv-languages {
           width: 25%;
         }
-        .al-cv-education {
+        .al-cv-educations {
           width: 40%;
         }
         .al-cv-hobbies {
@@ -150,15 +176,29 @@ export default defineComponent({
 }
 
 @media print {
-  .al-cv-page-header,
-  .al-cv-page-footer {
-    display: none;
-  }
+  .al-cv {
+    font-weight: 400;
 
-  .al-cv-page {
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
+    .al-cv-page-header,
+    .al-cv-page-footer {
+      display: none;
+      height: 0;
+    }
+
+    .al-cv-page {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+
+      // .al-cv-misc {
+      //   .al-cv-section {
+      //     .section-title {
+      //       margin-bottom: multiply(al-cv-base-size, 0.5);
+      //     }
+      //   }
+      // }
+    }
   }
 }
 </style>

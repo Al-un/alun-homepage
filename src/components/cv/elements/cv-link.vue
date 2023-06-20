@@ -41,6 +41,9 @@ export default defineComponent({
 <style lang="scss">
 .al-link {
   display: inline-block;
+  text-decoration: none;
+  color: var(--al-cv-color-on-surface);
+  transition: color 0.2s;
 
   // icon
   img {
@@ -57,15 +60,8 @@ export default defineComponent({
 
   // text zone
   .text {
-    text-decoration: underline dotted var(--al-cv-color-primary);
-    // transition: color 0.2s, text-decoration 0.2s; // effect is barely noticable
-  }
-
-  &:hover {
-    .text {
-      color: var(--al-cv-color-primary);
-      text-decoration: underline var(--al-cv-color-primary);
-    }
+    text-decoration: none;
+    transition: text-decoration 0.2s;
   }
 
   // open in new window icon
@@ -75,15 +71,22 @@ export default defineComponent({
     vertical-align: middle;
   }
 
-  // TEMP
-  color: var(--al-cv-color-on-surface);
+  // Hovering
+  &:hover,
+  &:focus {
+    color: var(--al-cv-color-primary);
+
+    .text {
+      text-decoration: underline dotted var(--al-cv-color-primary);
+    }
+  }
 }
 
 @media print {
   .al-link {
     .text {
       display: inline-block;
-      text-decoration: underline var(--al-cv-color-primary);
+      text-decoration: underline dotted var(--al-cv-color-primary);
     }
 
     .open-in-new {

@@ -1,35 +1,11 @@
-// CSS var
-// https://material.io/design/color/the-color-system.html#tools-for-picking-colors
-:root {
-  // default color T_T https://material.io/design/material-theming/implementing-your-theme.html#color
-  // --al-cv-color-primary: #6200ee;
-  // --al-cv-color-primary-dark: #3700b3;
-  // --al-cv-color-secondary: #03dac6;
-  // --al-cv-color-secondary-dark: #018786;
-
-  --al-cv-color-primary: #1E88E5; // Blue 600
-  --al-cv-color-primary-dark: #1565c0; // Blue 800
-  --al-cv-color-secondary: #ff9800; // Orange 500
-  --al-cv-color-secondary-dark: #ef6c00; // Orange 800
-
-  --al-cv-color-body-bg: #222;
-  --al-cv-color-surface-bg: #efefef;
-  --al-cv-color-on-surface: #000000;
-  --al-cv-color-on-surface-disabled: #424242;
-  --al-cv-color-on-primary: #ffffff;
-  --al-cv-color-on-secondary: #000000;
-  --al-cv-base-size: 1rem;
-  --al-cv-font-size-m: 1rem;
-  --al-cv-font-family-title: "Source Code Pro";
-  --al-cv-font-family-text: "Source Sans Pro";
-}
+// CSS variables are initialised by JavaScript
 
 // ---------- Printing
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/@page
 // https://www.smashingmagazine.com/2015/01/designing-for-print-with-css/
 @page {
-  margin: 8mm;
+  margin: 8mm 1cm;
   size: A4 portrait;
 
   @top-left-corner {
@@ -62,18 +38,4 @@
   @bottom-right-corner {
     content: "";
   }
-}
-
-@media print {
-  :root {
-    --al-cv-color-primary: pink;
-    --al-cv-color-body-bg: #ffffff;
-    --al-cv-color-surface-bg: #ffffff;
-    --al-cv-base-size: 0.75rem;
-    --al-cv-font-size-m: 6pt;
-  }
-
-  // body{
-  //   margin: 1cm;
-  // }
 }

@@ -1,19 +1,12 @@
 <template>
-  <cv-section :section="skills" class="al-cv-skill" title-md-icon="code">
-    <p class="intro on-screen-only">
-      Self assessment of my current capabilities and currently charging up
-      batteries for the topics I am currently interested in.
-    </p>
-    <p class="intro on-print-only">
-      Levels are self assessed with highlighting on topics I am currently
-      interested in.
-    </p>
-
-    <cv-skill-group
-      v-for="(skillGroup, grpIdx) in skills.content"
-      :key="grpIdx"
-      :skill-group="skillGroup"
-    />
+  <cv-section :section="skills" class="al-cv-skills" title-md-icon="code">
+    <div class="skills-list">
+      <cv-skill-group
+        v-for="(skillGroup, grpIdx) in skills.content"
+        :key="grpIdx"
+        :skill-group="skillGroup"
+      />
+    </div>
   </cv-section>
 </template>
 
@@ -21,7 +14,7 @@
 import { defineComponent } from "@vue/composition-api";
 
 import CvSection from "./cv-section.vue";
-import CvSkillGroup from "./cv-skill-group.vue";
+import CvSkillGroup from "./elements/cv-skill-group.vue";
 import { CvSkillSection } from "@/models";
 
 interface Props {
@@ -42,36 +35,35 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.al-cv-skill {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-
-  .section-title {
-    width: 100%;
+.al-cv-skills {
+  .skills-list {
+    display: grid;
+    gap: multiply(al-cv-base-size, 2);
+    grid-template-columns: 1fr;
+    align-items: baseline;
   }
+}
 
-  .intro {
-    width: 100%;
-    margin-bottom: multiply(al-cv-base-size, 0.25);
+@include for-tablet-portrait-up {
+  .al-cv-skills {
+    .skills-list {
+      grid-template-columns: 1fr 1fr;
+    }
   }
+}
 
-  .on-screen-only {
-    display: block;
-  }
-  .on-print-only {
-    display: none;
+@include for-tablet-landscape-up {
+  .al-cv-skills {
+    .skills-list {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
   }
 }
 
 @media print {
-  .al-cv-skill {
-    .on-screen-only {
-      display: none;
-    }
-    .on-print-only {
-      display: block;
+  .al-cv-skills {
+    .skills-list {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 }

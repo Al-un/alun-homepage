@@ -2,15 +2,13 @@
   <footer class="al-cv-page-footer">
     <div class="content">
       <p>
-        Code is hosted on
-        <base-link href="https://github.com/Al-un/alun-homepage"
-          >Github</base-link
-        >
-        and deployed on
-        <base-link href="https://surge.sh/">Surge.sh</base-link>.
+        {{ "cv.footer.code-hosted" | i18n }}
+        <cv-link url="https://github.com/Al-un/alun-homepage">Github</cv-link>
+        {{ "cv.footer.code-deployed" | i18n }}
+        <cv-link url="https://surge.sh/">Surge.sh</cv-link>.
       </p>
       <p>
-        Works better on Chrome. Developed with Chrome 80.0.xxx and Firefox 74.0
+        {{ "cv.footer.code-tested" | i18n }}
       </p>
     </div>
   </footer>
@@ -19,9 +17,11 @@
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
+import CvLink from "@/components/cv/elements/cv-link.vue";
+
 export default defineComponent({
   name: "cv-page-footer",
-  components: {},
+  components: { CvLink },
   props: {},
 
   setup() {
@@ -31,15 +31,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+// Footer colours are invariant
 .al-cv-page-footer {
   background-color: #393939;
   color: #ffffff;
+  padding: multiply(al-cv-base-size, 0.5) 0px;
+
   .al-link {
     color: #ffffff;
-  }
-
-  @include print-and-tablet {
-    margin-top: multiply(al-cv-base-size, 1);
   }
 
   .content {
